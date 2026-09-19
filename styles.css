@@ -140,6 +140,23 @@ h1, h2, h3, h4, p, figure {
   overflow: hidden;
 }
 
+.section--navy > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-vanta {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.section-vanta canvas {
+  display: block;
+}
+
 .section--cream {
   background: var(--cream-100);
 }
@@ -217,6 +234,14 @@ p {
 }
 
 .section--navy .card p {
+  color: var(--ink-700);
+}
+
+.section--navy .timeline__step h4 {
+  color: var(--ink-900);
+}
+
+.section--navy .timeline__step p {
   color: var(--ink-700);
 }
 
@@ -467,12 +492,26 @@ textarea:focus-visible,
   background-size: 64px 64px;
   mask-image: radial-gradient(circle at 70% 20%, black, transparent 70%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.hero__vanta {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero__vanta canvas {
+  display: block;
 }
 
 .hero__grid {
   position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.95fr 1.05fr;
   gap: clamp(32px, 6vw, 64px);
   align-items: center;
 }
@@ -500,6 +539,7 @@ textarea:focus-visible,
 .hero h1 {
   color: var(--white);
   margin-bottom: 20px;
+  font-size: clamp(1.9rem, 2.7vw, 2.6rem);
 }
 
 .hero h1 em {
@@ -968,6 +1008,37 @@ textarea:focus-visible,
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 22px;
+}
+
+/* -------------------- Partner brand logo grid -------------------- */
+.brand-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.brand-logo-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.brand-logo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.brand-logo-card img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .brand-chip {
@@ -1582,6 +1653,7 @@ textarea:focus-visible,
 .page-hero h1 {
   color: var(--white);
   margin-bottom: 16px;
+  font-size: clamp(1.9rem, 2.7vw, 2.6rem);
 }
 
 .page-hero p {
@@ -1844,54 +1916,223 @@ textarea:focus-visible,
 }
 
 .ceo-portrait {
-  aspect-ratio: 3/4;
+  min-height: 460px;
   border-radius: var(--r-lg);
-  background: linear-gradient(155deg, var(--navy-700), var(--navy-950));
+  background: radial-gradient(circle at 85% 15%, rgba(242, 116, 5, 0.28), transparent 55%),
+              linear-gradient(160deg, #1c2232 0%, #121622 60%, #0d1018 100%);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: space-between;
-  padding: 32px 28px;
+  padding: clamp(28px, 4vw, 36px) clamp(24px, 3.5vw, 32px);
+  border: 1px solid rgba(242, 116, 5, 0.35);
+  box-shadow: 0 24px 64px rgba(18, 17, 16, 0.28),
+              0 0 30px rgba(242, 116, 5, 0.08);
 }
 
-.ceo-portrait::before {
-  content: '';
+.ceo-portrait__backdrop {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 30% 20%, rgba(246, 138, 46, 0.35), transparent 55%);
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.ceo-portrait__quote-mark {
+.ceo-portrait__watermark {
+  position: absolute;
+  right: -20px;
+  bottom: 80px;
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.025);
+  user-select: none;
+  font-family: var(--font-display);
+}
+
+.ceo-portrait__mesh {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.ceo-portrait__header {
   position: relative;
-  font-family: Georgia, serif;
-  font-size: 4.5rem;
-  line-height: 1;
-  color: var(--gold-500);
-  font-weight: 700;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ceo-portrait__quote-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: rgba(242, 116, 5, 0.15);
+  border: 1px solid rgba(242, 116, 5, 0.35);
+  display: grid;
+  place-items: center;
+  color: var(--gold-400);
+}
+
+.ceo-portrait__quote-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ceo-portrait__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--gold-300);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ceo-portrait__body {
+  position: relative;
+  z-index: 1;
+  margin-block: 28px 24px;
 }
 
 .ceo-portrait__quote {
-  position: relative;
   color: var(--white);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  margin: 0;
+  font-size: clamp(1.6rem, 2.5vw, 2.05rem);
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  margin: 0 0 10px;
 }
 
-.ceo-portrait__tag {
+.ceo-portrait__highlight {
+  background: linear-gradient(135deg, #ffa040 0%, #f27405 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.ceo-portrait__quote em {
+  font-style: normal;
   position: relative;
+  white-space: nowrap;
+}
+
+.ceo-portrait__quote em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 6px;
+  background: rgba(242, 116, 5, 0.4);
+  border-radius: 3px;
+  z-index: -1;
+}
+
+.ceo-portrait__subquote {
+  font-size: 0.88rem;
+  color: rgba(248, 245, 238, 0.65);
+  margin: 0 0 22px;
+}
+
+.ceo-portrait__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ceo-portrait__stat {
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.ceo-portrait__stat strong {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--white);
-  font-weight: 700;
-  background: rgba(5, 14, 28, 0.5);
-  padding: 10px 16px;
-  border-radius: var(--r-md);
-  font-size: 0.86rem;
-  backdrop-filter: blur(4px);
+  line-height: 1.1;
+  font-family: var(--font-display);
+}
+
+.ceo-portrait__stat strong span {
+  color: var(--gold-400);
+  font-size: 0.9em;
+  margin-left: 2px;
+}
+
+.ceo-portrait__stat small {
+  display: block;
+  font-size: 0.76rem;
+  color: rgba(248, 245, 238, 0.6);
+  margin-top: 4px;
+}
+
+.ceo-portrait__footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ceo-portrait__role {
+  display: block;
+  font-size: 0.76rem;
+  color: rgba(248, 245, 238, 0.55);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.ceo-portrait__name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.12em;
+}
+
+.ceo-portrait__signature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ceo-portrait__signature svg {
+  width: 95px;
+  height: 38px;
+}
+
+.ceo-portrait__seal {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: rgba(242, 116, 5, 0.2);
+  border: 1.5px solid var(--gold-400);
+  color: var(--gold-400);
+  font-size: 0.68rem;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  font-family: 'Malgun Gothic', serif;
+  user-select: none;
 }
 
 .value-grid {
@@ -2005,6 +2246,10 @@ textarea:focus-visible,
   .value-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .brand-logo-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 940px) {
@@ -2080,7 +2325,8 @@ textarea:focus-visible,
   }
 
   .ceo-portrait {
-    max-width: 320px;
+    max-width: 460px;
+    width: 100%;
     margin-inline: auto;
   }
 
@@ -2115,6 +2361,11 @@ textarea:focus-visible,
 @media (max-width: 640px) {
   .timeline {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-logo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   h1 {

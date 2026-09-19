@@ -166,6 +166,62 @@
     observer.observe(chart);
   }
 
+  /* ---------- Hero background: VANTA.DOTS (three.js 기반, CDN 로드) ---------- */
+  function initHeroVanta() {
+    var el = document.getElementById('hero-vanta');
+    if (!el) return;
+
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // 정적 배경 그대로 둠
+
+    if (typeof VANTA === 'undefined' || !VANTA.DOTS) return; // CDN 로드 실패 시 조용히 무시
+
+    VANTA.DOTS({
+      el: el,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xf27405,
+      color2: 0xf9a865,
+      backgroundColor: 0x121110,
+      backgroundAlpha: 0,
+      size: 4.00,
+      spacing: 28.00,
+      showLines: false
+    });
+  }
+
+  /* ---------- Navy 섹션 배경: VANTA.TOPOLOGY (p5.js 기반, CDN 로드) ---------- */
+  function initTopologyBackgrounds() {
+    var targets = document.querySelectorAll('[data-vanta-topology]');
+    if (!targets.length) return;
+
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // 정적 배경 그대로 둠
+
+    if (typeof VANTA === 'undefined' || !VANTA.TOPOLOGY) return; // CDN 로드 실패 시 조용히 무시
+
+    targets.forEach(function (el) {
+      VANTA.TOPOLOGY({
+        el: el,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x913f0d,
+        backgroundColor: 0x1b1917,
+        backgroundAlpha: 1
+      });
+    });
+  }
+
   /* ---------- Current year in footer ---------- */
   function initYear() {
     var yearEls = document.querySelectorAll('[data-current-year]');
@@ -355,6 +411,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initNav();
+    initHeroVanta();
+    initTopologyBackgrounds();
     initReveal();
     initCounters();
     initMarketChart();

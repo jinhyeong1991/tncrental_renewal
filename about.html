@@ -68,10 +68,71 @@
   <section class="section" aria-labelledby="ceo-title">
     <div class="container">
       <div class="ceo-message reveal">
-        <div class="ceo-portrait" role="img" aria-label="티앤씨렌탈 대표이사 오은경의 메시지를 담은 인용구 카드">
-          <span class="ceo-portrait__quote-mark" aria-hidden="true">&ldquo;</span>
-          <p class="ceo-portrait__quote">거품을 뺀<br>숫자가<br>우리의 말입니다</p>
-          <span class="ceo-portrait__tag">대표이사 오은경</span>
+        <div class="ceo-portrait" role="region" aria-label="티앤씨렌탈 대표이사 오은경의 철학 메시지 카드">
+          <!-- 배경 장식 아트워크 -->
+          <div class="ceo-portrait__backdrop" aria-hidden="true">
+            <span class="ceo-portrait__watermark">NUMBERS</span>
+            <svg class="ceo-portrait__mesh" viewBox="0 0 360 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="340" cy="80" r="160" stroke="url(#mesh-glow)" stroke-width="1.2" stroke-dasharray="4 6"/>
+              <circle cx="340" cy="80" r="220" stroke="url(#mesh-glow)" stroke-width="1" opacity="0.6"/>
+              <path d="M-40 420 Q120 380 240 260 T380 60" stroke="url(#mesh-glow)" stroke-width="1.8"/>
+              <defs>
+                <linearGradient id="mesh-glow" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#f27405" stop-opacity="0.1"/>
+                  <stop offset="60%" stop-color="#f27405" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#ffa040" stop-opacity="0.8"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- 상단 뱃지 & 인용 부호 -->
+          <div class="ceo-portrait__header">
+            <div class="ceo-portrait__quote-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="currentColor">
+                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H6.5C6.8 11.2 8.2 9.8 10 9.8V8zm16 0c-3.3 0-6 2.7-6 6v10h10V14h-7.5c.3-2.8 1.7-4.2 3.5-4.2V8z"/>
+              </svg>
+            </div>
+            <span class="ceo-portrait__badge">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+              CEO PHILOSOPHY
+            </span>
+          </div>
+
+          <!-- 메인 메시지 -->
+          <div class="ceo-portrait__body">
+            <p class="ceo-portrait__quote">
+              거품을 뺀 <span class="ceo-portrait__highlight">숫자가</span><br>
+              우리의 <em>말입니다</em>
+            </p>
+            <p class="ceo-portrait__subquote">20여 년간 실적으로 증명된 단 하나의 원칙</p>
+
+            <!-- 실적 미니 스탯 칩 -->
+            <div class="ceo-portrait__stats" aria-label="대표 실적 요약">
+              <div class="ceo-portrait__stat">
+                <strong>30만<span>+</span></strong>
+                <small>누적 계정 달성</small>
+              </div>
+              <div class="ceo-portrait__stat">
+                <strong>20<span>년+</span></strong>
+                <small>렌탈 전문 경영</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- 하단 대표 서명 영역 -->
+          <div class="ceo-portrait__footer">
+            <div class="ceo-portrait__profile">
+              <span class="ceo-portrait__role">(주)티앤씨노블 대표이사</span>
+              <strong class="ceo-portrait__name">오 은 경</strong>
+            </div>
+            <div class="ceo-portrait__signature" aria-label="오은경 대표 서명">
+              <svg viewBox="0 0 110 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 26 C14 12, 22 8, 26 18 C30 28, 22 36, 15 32 C10 28, 16 16, 28 14 C36 12, 45 22, 52 24 C58 26, 64 16, 70 20 C76 24, 82 20, 88 18 M68 28 L98 26 M84 14 C86 24, 92 34, 102 32" stroke="#ffa040" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="ceo-portrait__seal" title="공식 직인">인</span>
+            </div>
+          </div>
         </div>
         <div>
           <span class="eyebrow">CEO MESSAGE</span>
@@ -91,6 +152,7 @@
 
   <!-- ============ GROWTH STATS ============ -->
   <section class="section section--navy" aria-labelledby="growth-title">
+    <div class="section-vanta" data-vanta-topology aria-hidden="true"></div>
     <div class="container">
       <div class="section-head section-head--center">
         <span class="eyebrow">GROWTH</span>
@@ -278,6 +340,8 @@
   <span class="float-cta__label">상담 신청하기</span>
 </a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.topology.min.js"></script>
 <script src="script.js" defer></script>
 </body>
 </html>
