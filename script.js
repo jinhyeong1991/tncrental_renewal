@@ -174,6 +174,9 @@
     var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return; // 정적 배경 그대로 둠
 
+    var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    if (isMobile) return; // 모바일에서는 도트 애니메이션 없이 정적 배경만 사용
+
     if (typeof VANTA === 'undefined' || !VANTA.DOTS) return; // CDN 로드 실패 시 조용히 무시
 
     VANTA.DOTS({
