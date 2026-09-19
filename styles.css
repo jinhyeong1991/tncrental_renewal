@@ -494,13 +494,18 @@ textarea:focus-visible,
 }
 
 :root[data-theme="samsung"] .theme-toggle {
-  background: #1428a0;
+  background: #eaf1ff;
+  border-color: #bcd4ff;
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .theme-toggle:hover {
   border-color: #1428a0;
-  color: var(--white);
+  color: #1428a0;
 }
 
 :root[data-theme="samsung"] .theme-toggle svg {
-  color: var(--white);
+  color: #1428a0;
 }
 
 .hamburger {
@@ -638,6 +643,54 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* 블루(삼성) 테마에서는 메인 히어로를 화이트+라이트블루 톤, 어두운 텍스트로 전환 */
+:root[data-theme="samsung"] .hero {
+  background: #eaf1ff;
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .hero::before {
+  background-image:
+    linear-gradient(rgba(20, 40, 160, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 40, 160, 0.06) 1px, transparent 1px);
+}
+
+:root[data-theme="samsung"] .hero__badge {
+  background: rgba(20, 40, 160, 0.08);
+  border-color: rgba(20, 40, 160, 0.18);
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .hero h1 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .hero h1 em {
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .hero__lead {
+  color: rgba(16, 24, 40, 0.72);
+}
+
+:root[data-theme="samsung"] .hero__meta {
+  color: rgba(16, 24, 40, 0.6);
+}
+
+:root[data-theme="samsung"] .hero__meta svg {
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .hero .btn-outline {
+  color: #1428a0;
+  border-color: rgba(20, 40, 160, 0.35);
+}
+
+:root[data-theme="samsung"] .hero .btn-outline:hover {
+  border-color: #1428a0;
+  background: rgba(20, 40, 160, 0.06);
 }
 
 .hero__meta svg {
@@ -1624,6 +1677,56 @@ textarea:focus-visible,
   padding-top: 24px;
   font-size: 0.82rem;
   color: rgba(248, 245, 238, 0.45);
+}
+
+/* -------------------- Floating sample-site link -------------------- */
+.float-sample {
+  position: fixed;
+  right: clamp(14px, 3vw, 28px);
+  bottom: calc(clamp(14px, 3vw, 28px) + 62px);
+  z-index: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--navy-900);
+  font-weight: 700;
+  font-size: 0.86rem;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.float-sample:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold-400);
+}
+
+.float-sample svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-500);
+  flex-shrink: 0;
+}
+
+.float-sample__label {
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .float-sample__label {
+    display: none;
+  }
+  .float-sample {
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    bottom: calc(clamp(14px, 3vw, 28px) + 66px);
+  }
 }
 
 /* -------------------- Floating sticky CTA -------------------- */
