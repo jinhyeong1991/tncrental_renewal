@@ -2861,3 +2861,11 @@ textarea:focus-visible,
 :root[data-theme="samsung"] .brand__mark svg {
   color: #ffffff;
 }
+
+/* 대표 메시지 카드 "숫자가" 강조 문구: 오렌지 대신 블루 그라디언트 */
+:root[data-theme="samsung"] .ceo-portrait__highlight {
+  background: linear-gradient(135deg, #2189ff 0%, #1428a0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
