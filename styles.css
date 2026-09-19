@@ -2579,3 +2579,252 @@ textarea:focus-visible,
     width: 100%;
   }
 }
+
+/* =========================================================
+   블루(삼성) 테마 — 전면 화이트 톤 재정의
+   진한 네이비를 큰 배경 면으로 쓰던 곳을 전부 화이트/라이트그레이로 바꾸고,
+   블루는 텍스트·버튼·아이콘·테두리 같은 포인트에만 남긴다.
+   (기본 오렌지 테마 색상 변수는 건드리지 않음)
+   ========================================================= */
+
+/* 히어로: 점 애니메이션 배경 대신 순백 배경 */
+:root[data-theme="samsung"] .hero {
+  background: #ffffff;
+}
+
+:root[data-theme="samsung"] .hero__vanta {
+  display: none;
+}
+
+/* navy 섹션(왜 티앤씨렌탈/성장 스토리/프로세스 등): 화이트 배경 + 어두운 텍스트 */
+:root[data-theme="samsung"] .section--navy {
+  background: #ffffff;
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .section-vanta {
+  display: none;
+}
+
+:root[data-theme="samsung"] .section--navy h1,
+:root[data-theme="samsung"] .section--navy h2,
+:root[data-theme="samsung"] .section--navy h3,
+:root[data-theme="samsung"] .section--navy h4 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .section--navy p {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+:root[data-theme="samsung"] .section--navy .lead {
+  color: rgba(16, 24, 40, 0.72);
+}
+
+/* 가전종합몰 카드: 화이트 + 블루 테두리 */
+:root[data-theme="samsung"] .mall-card--general {
+  background: #ffffff;
+  border: 1px solid #bcd4ff;
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .mall-card--general h3 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .mall-card--general p {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+:root[data-theme="samsung"] .mall-card--general .mall-card__tag {
+  background: #eaf1ff;
+  color: #1428a0;
+}
+
+/* 파트너 후기 카드: 화이트 + 얇은 테두리 */
+:root[data-theme="samsung"] .testimonial {
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+:root[data-theme="samsung"] .testimonial blockquote {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .testimonial cite {
+  color: rgba(16, 24, 40, 0.6);
+}
+
+/* 추천 가격 카드: 화이트 + 블루 테두리 강조 */
+:root[data-theme="samsung"] .price-card--featured {
+  background: #ffffff;
+  border: 1.5px solid #1428a0;
+  box-shadow: 0 20px 48px rgba(20, 40, 160, 0.16);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__name,
+:root[data-theme="samsung"] .price-card--featured .price-card__price strong {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .price-card--featured p,
+:root[data-theme="samsung"] .price-card--featured .price-card__unit {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+/* 비용 비교 표 헤더: 화이트 + 블루 밑줄 강조 */
+:root[data-theme="samsung"] .cost-table thead th {
+  background: #ffffff;
+  color: #1428a0;
+  border-bottom: 2px solid #1428a0;
+}
+
+/* 하단 CTA 배너: 화이트 + 옅은 블루 테두리 */
+:root[data-theme="samsung"] .cta-banner {
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+:root[data-theme="samsung"] .cta-banner h2 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .cta-banner p {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+:root[data-theme="samsung"] .cta-phone-row a {
+  color: #1428a0;
+}
+
+/* 푸터: 화이트 + 상단 라인 */
+:root[data-theme="samsung"] .site-footer {
+  background: #ffffff;
+  color: rgba(16, 24, 40, 0.68);
+  border-top: 1px solid var(--line);
+}
+
+:root[data-theme="samsung"] .footer-grid {
+  border-bottom-color: var(--line);
+}
+
+:root[data-theme="samsung"] .footer-brand,
+:root[data-theme="samsung"] .footer-col h4 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .footer-brand .brand__mark svg {
+  color: #ffffff;
+}
+
+:root[data-theme="samsung"] .footer-col p,
+:root[data-theme="samsung"] .footer-col address,
+:root[data-theme="samsung"] .footer-col a {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+:root[data-theme="samsung"] .footer-col a:hover {
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .footer-bottom {
+  color: rgba(16, 24, 40, 0.45);
+}
+
+/* 서브페이지 상단 배너: 어두운 사진 배경 대신 화이트 배경 */
+:root[data-theme="samsung"] .page-hero {
+  background: #ffffff;
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .page-hero--about,
+:root[data-theme="samsung"] .page-hero--business,
+:root[data-theme="samsung"] .page-hero--pricing,
+:root[data-theme="samsung"] .page-hero--contact {
+  background-image: none;
+}
+
+:root[data-theme="samsung"] .breadcrumb {
+  color: rgba(16, 24, 40, 0.55);
+}
+
+:root[data-theme="samsung"] .page-hero h1 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .page-hero p {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+/* 상담신청 연락처 안내 박스: 화이트 + 테두리 */
+:root[data-theme="samsung"] .info-block {
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+:root[data-theme="samsung"] .info-block h3 {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .info-block dt {
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .info-block dd,
+:root[data-theme="samsung"] .info-block dd a {
+  color: rgba(16, 24, 40, 0.72);
+}
+
+/* 대표 메시지 카드: 화이트 + 블루 테두리 */
+:root[data-theme="samsung"] .ceo-portrait {
+  background: #ffffff;
+  border: 1px solid #bcd4ff;
+  box-shadow: 0 20px 48px rgba(20, 40, 160, 0.12);
+}
+
+:root[data-theme="samsung"] .ceo-portrait__watermark {
+  color: rgba(16, 24, 40, 0.03);
+}
+
+:root[data-theme="samsung"] .ceo-portrait__badge {
+  background: #eaf1ff;
+  border-color: #bcd4ff;
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .ceo-portrait__quote,
+:root[data-theme="samsung"] .ceo-portrait__name {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .ceo-portrait__subquote,
+:root[data-theme="samsung"] .ceo-portrait__role {
+  color: rgba(16, 24, 40, 0.6);
+}
+
+:root[data-theme="samsung"] .ceo-portrait__stat {
+  background: #f4f8ff;
+  border-color: #dbe4f3;
+}
+
+:root[data-theme="samsung"] .ceo-portrait__stat strong {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .ceo-portrait__stat small {
+  color: rgba(16, 24, 40, 0.6);
+}
+
+:root[data-theme="samsung"] .ceo-portrait__footer {
+  border-top-color: var(--line);
+}
+
+/* 필터 버튼(창업비용 상세 보기 등): 화이트 배경 대신 블루 그라디언트 버튼 유지 */
+:root[data-theme="samsung"] .btn-dark {
+  background: linear-gradient(135deg, #2189ff, #1428a0);
+  color: #ffffff;
+}
+
+:root[data-theme="samsung"] .btn-dark:hover {
+  background: linear-gradient(135deg, #1428a0, #0f1f7a);
+}
