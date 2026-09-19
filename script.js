@@ -15,7 +15,7 @@
       heroVantaInstance.setOptions({
         color: isSamsung ? 0x1428a0 : 0xf27405,
         color2: isSamsung ? 0x2189ff : 0xf9a865,
-        backgroundColor: isSamsung ? 0x071a5c : 0x121110
+        backgroundColor: isSamsung ? 0xeaf1ff : 0x121110
       });
     }
     topologyInstances.forEach(function (inst) {
@@ -251,7 +251,7 @@
       scaleMobile: 1.00,
       color: isSamsung ? 0x1428a0 : 0xf27405,
       color2: isSamsung ? 0x2189ff : 0xf9a865,
-      backgroundColor: isSamsung ? 0x071a5c : 0x121110,
+      backgroundColor: isSamsung ? 0xeaf1ff : 0x121110,
       backgroundAlpha: 0,
       size: 2.60,
       spacing: 26.00,
