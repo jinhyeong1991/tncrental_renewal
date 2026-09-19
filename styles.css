@@ -38,6 +38,7 @@ body {
   background: var(--cream-50);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img {
@@ -96,12 +97,13 @@ h1, h2, h3, h4, p, figure {
   --white: #ffffff;
   --line: #e4ddcc;
   --success: #2f7a4f;
+  --accent-rgb: 242, 116, 5;
 
   /* Elevation */
   --shadow-sm: 0 2px 8px rgba(18, 17, 16, 0.06);
   --shadow-md: 0 12px 32px rgba(18, 17, 16, 0.10);
   --shadow-lg: 0 24px 64px rgba(18, 17, 16, 0.16);
-  --shadow-gold: 0 12px 28px rgba(242, 116, 5, 0.32);
+  --shadow-gold: 0 12px 28px rgba(var(--accent-rgb), 0.32);
 
   /* Radius */
   --r-sm: 10px;
@@ -115,6 +117,31 @@ h1, h2, h3, h4, p, figure {
 
   /* Type */
   --font-display: 'Pretendard', -apple-system, sans-serif;
+}
+
+/* -------------------- Alternate theme: Samsung-style blue/white -------------------- */
+:root[data-theme="samsung"] {
+  --navy-950: #071a5c;
+  --navy-900: #1428a0;
+  --navy-800: #1e39b8;
+  --navy-700: #2c4dcc;
+  --navy-600: #4266d6;
+  --gold-600: #0f1f7a;
+  --gold-500: #1428a0;
+  --gold-400: #2189ff;
+  --gold-300: #5aa5ff;
+  --gold-050: #eaf1ff;
+  --cream-50: #ffffff;
+  --cream-100: #f4f8ff;
+  --ink-900: #101828;
+  --ink-700: #33415c;
+  --ink-500: #64748b;
+  --ink-300: #a9b6c9;
+  --white: #ffffff;
+  --line: #dbe4f3;
+  --success: #1428a0;
+  --shadow-gold: 0 12px 28px rgba(20, 40, 160, 0.32);
+  --accent-rgb: 20, 40, 160;
 }
 
 /* -------------------- Layout helpers -------------------- */
@@ -281,7 +308,7 @@ p {
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
-  box-shadow: 0 16px 36px rgba(242, 116, 5, 0.42);
+  box-shadow: 0 16px 36px rgba(var(--accent-rgb), 0.42);
   transform: translateY(-2px);
 }
 
@@ -380,6 +407,7 @@ textarea:focus-visible,
 .brand__mark svg {
   width: 20px;
   height: 20px;
+  color: var(--gold-300);
 }
 
 .brand__sub {
@@ -438,6 +466,43 @@ textarea:focus-visible,
   flex-shrink: 0;
 }
 
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--navy-900);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
+  color: #1428a0;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: #1428a0;
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .theme-toggle {
+  background: #1428a0;
+  border-color: #1428a0;
+  color: var(--white);
+}
+
+:root[data-theme="samsung"] .theme-toggle svg {
+  color: var(--white);
+}
+
 .hamburger {
   display: none;
   width: 44px;
@@ -475,7 +540,7 @@ textarea:focus-visible,
 /* -------------------- Hero -------------------- */
 .hero {
   position: relative;
-  background: radial-gradient(circle at 82% 10%, rgba(242, 116, 5, 0.22), transparent 55%),
+  background: radial-gradient(circle at 82% 10%, rgba(var(--accent-rgb), 0.22), transparent 55%),
     linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 60%, var(--navy-800) 100%);
   color: var(--white);
   overflow: hidden;
@@ -652,7 +717,7 @@ textarea:focus-visible,
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(242, 116, 5, 0.12);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
 }
 
 .market-chart__swatch--line {
@@ -957,7 +1022,7 @@ textarea:focus-visible,
 }
 
 .mall-card--general .mall-card__tag {
-  background: rgba(246, 138, 46, 0.18);
+  background: rgba(var(--accent-rgb), 0.18);
   color: var(--gold-300);
 }
 
@@ -1442,7 +1507,7 @@ textarea:focus-visible,
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(242, 116, 5, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.35), transparent 70%);
 }
 
 .cta-banner h2 {
@@ -1581,7 +1646,7 @@ textarea:focus-visible,
 
 .float-cta:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(242, 116, 5, 0.46);
+  box-shadow: 0 18px 40px rgba(var(--accent-rgb), 0.46);
 }
 
 .float-cta svg {
@@ -1603,11 +1668,18 @@ textarea:focus-visible,
     height: 56px;
     justify-content: center;
   }
+
+  .theme-toggle span {
+    display: none;
+  }
+  .theme-toggle {
+    padding: 8px;
+  }
 }
 
 /* -------------------- Page hero (sub pages) -------------------- */
 .page-hero {
-  background: radial-gradient(circle at 85% 0%, rgba(242, 116, 5, 0.2), transparent 55%),
+  background: radial-gradient(circle at 85% 0%, rgba(var(--accent-rgb), 0.2), transparent 55%),
     linear-gradient(180deg, var(--navy-950), var(--navy-900));
   color: var(--white);
   padding-block: clamp(64px, 9vw, 108px) clamp(48px, 6vw, 80px);
@@ -1635,6 +1707,26 @@ textarea:focus-visible,
 .page-hero--contact {
   background-image: linear-gradient(90deg, rgba(18, 17, 16, 0.94) 0%, rgba(18, 17, 16, 0.82) 45%, rgba(18, 17, 16, 0.4) 75%, rgba(18, 17, 16, 0.15) 100%),
     url('images/banner-contact.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--about {
+  background-image: linear-gradient(90deg, rgba(7, 26, 92, 0.94) 0%, rgba(7, 26, 92, 0.82) 45%, rgba(7, 26, 92, 0.4) 75%, rgba(7, 26, 92, 0.15) 100%),
+    url('images/banner-about2.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--business {
+  background-image: linear-gradient(90deg, rgba(7, 26, 92, 0.94) 0%, rgba(7, 26, 92, 0.82) 45%, rgba(7, 26, 92, 0.4) 75%, rgba(7, 26, 92, 0.15) 100%),
+    url('images/banner-business2.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--pricing {
+  background-image: linear-gradient(90deg, rgba(7, 26, 92, 0.94) 0%, rgba(7, 26, 92, 0.82) 45%, rgba(7, 26, 92, 0.4) 75%, rgba(7, 26, 92, 0.15) 100%),
+    url('images/banner-pricing2.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--contact {
+  background-image: linear-gradient(90deg, rgba(7, 26, 92, 0.94) 0%, rgba(7, 26, 92, 0.82) 45%, rgba(7, 26, 92, 0.4) 75%, rgba(7, 26, 92, 0.15) 100%),
+    url('images/banner-contact2.jpg');
 }
 
 .page-hero .container {
@@ -1732,7 +1824,7 @@ textarea:focus-visible,
 .field textarea:focus {
   outline: none;
   border-color: var(--gold-500);
-  box-shadow: 0 0 0 4px rgba(242, 116, 5, 0.18);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.18);
 }
 
 .field small {
@@ -1918,7 +2010,7 @@ textarea:focus-visible,
 .ceo-portrait {
   min-height: 460px;
   border-radius: var(--r-lg);
-  background: radial-gradient(circle at 85% 15%, rgba(242, 116, 5, 0.28), transparent 55%),
+  background: radial-gradient(circle at 85% 15%, rgba(var(--accent-rgb), 0.28), transparent 55%),
               linear-gradient(160deg, #1c2232 0%, #121622 60%, #0d1018 100%);
   position: relative;
   overflow: hidden;
@@ -1926,9 +2018,9 @@ textarea:focus-visible,
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(28px, 4vw, 36px) clamp(24px, 3.5vw, 32px);
-  border: 1px solid rgba(242, 116, 5, 0.35);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
   box-shadow: 0 24px 64px rgba(18, 17, 16, 0.28),
-              0 0 30px rgba(242, 116, 5, 0.08);
+              0 0 30px rgba(var(--accent-rgb), 0.08);
 }
 
 .ceo-portrait__backdrop {
@@ -1973,8 +2065,8 @@ textarea:focus-visible,
   width: 44px;
   height: 44px;
   border-radius: var(--r-sm);
-  background: rgba(242, 116, 5, 0.15);
-  border: 1px solid rgba(242, 116, 5, 0.35);
+  background: rgba(var(--accent-rgb), 0.15);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
   display: grid;
   place-items: center;
   color: var(--gold-400);
@@ -2036,7 +2128,7 @@ textarea:focus-visible,
   bottom: 2px;
   width: 100%;
   height: 6px;
-  background: rgba(242, 116, 5, 0.4);
+  background: rgba(var(--accent-rgb), 0.4);
   border-radius: 3px;
   z-index: -1;
 }
@@ -2124,7 +2216,7 @@ textarea:focus-visible,
   width: 24px;
   height: 24px;
   border-radius: 4px;
-  background: rgba(242, 116, 5, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   border: 1.5px solid var(--gold-400);
   color: var(--gold-400);
   font-size: 0.68rem;

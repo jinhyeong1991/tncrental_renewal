@@ -5,6 +5,65 @@
 (function () {
   'use strict';
 
+  var heroVantaInstance = null;
+  var topologyInstances = [];
+
+  /* 테마에 맞춰 이미 생성된 VANTA(WebGL/캔버스) 배경들의 색상을 즉시 갱신 */
+  function applyVantaTheme(theme) {
+    var isSamsung = theme === 'samsung';
+    if (heroVantaInstance && heroVantaInstance.setOptions) {
+      heroVantaInstance.setOptions({
+        color: isSamsung ? 0x1428a0 : 0xf27405,
+        color2: isSamsung ? 0x2189ff : 0xf9a865,
+        backgroundColor: isSamsung ? 0x071a5c : 0x121110
+      });
+    }
+    topologyInstances.forEach(function (inst) {
+      if (inst && inst.setOptions) {
+        inst.setOptions({
+          color: isSamsung ? 0x2189ff : 0x913f0d,
+          backgroundColor: isSamsung ? 0x1428a0 : 0x1b1917
+        });
+      }
+    });
+  }
+
+  /* ---------- 색상 테마 전환 (기본 / 삼성 블루톤), 전 페이지 공통 localStorage로 유지 ---------- */
+  function initThemeToggle() {
+    var STORAGE_KEY = 'tnc-theme';
+    var toggles = document.querySelectorAll('[data-theme-toggle]');
+    if (!toggles.length) return;
+
+    function apply(theme) {
+      if (theme === 'samsung') {
+        document.documentElement.setAttribute('data-theme', 'samsung');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      toggles.forEach(function (btn) {
+        btn.setAttribute('aria-pressed', theme === 'samsung' ? 'true' : 'false');
+        var label = btn.querySelector('[data-theme-toggle-label]');
+        if (label) label.textContent = theme === 'samsung' ? '기본 테마' : '블루 테마';
+      });
+      applyVantaTheme(theme);
+    }
+
+    var current = document.documentElement.getAttribute('data-theme') === 'samsung' ? 'samsung' : 'default';
+    apply(current);
+
+    toggles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'samsung' ? 'default' : 'samsung';
+        try {
+          localStorage.setItem(STORAGE_KEY, next);
+        } catch (e) {
+          // localStorage 접근 불가(프라이빗 모드 등) — 현재 페이지에서만 적용
+        }
+        apply(next);
+      });
+    });
+  }
+
   /* ---------- Mobile hamburger nav ---------- */
   function initNav() {
     var toggle = document.querySelector('[data-nav-toggle]');
@@ -179,7 +238,9 @@
 
     if (typeof VANTA === 'undefined' || !VANTA.DOTS) return; // CDN 로드 실패 시 조용히 무시
 
-    VANTA.DOTS({
+    var isSamsung = document.documentElement.getAttribute('data-theme') === 'samsung';
+
+    heroVantaInstance = VANTA.DOTS({
       el: el,
       mouseControls: true,
       touchControls: true,
@@ -188,9 +249,9 @@
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: 0xf27405,
-      color2: 0xf9a865,
-      backgroundColor: 0x121110,
+      color: isSamsung ? 0x1428a0 : 0xf27405,
+      color2: isSamsung ? 0x2189ff : 0xf9a865,
+      backgroundColor: isSamsung ? 0x071a5c : 0x121110,
       backgroundAlpha: 0,
       size: 2.60,
       spacing: 26.00,
@@ -209,8 +270,10 @@
 
     if (typeof VANTA === 'undefined' || !VANTA.TOPOLOGY) return; // CDN 로드 실패 시 조용히 무시
 
+    var isSamsung = document.documentElement.getAttribute('data-theme') === 'samsung';
+
     targets.forEach(function (el) {
-      VANTA.TOPOLOGY({
+      var inst = VANTA.TOPOLOGY({
         el: el,
         mouseControls: true,
         touchControls: true,
@@ -219,10 +282,11 @@
         minWidth: 200.00,
         scale: 1.00,
         scaleMobile: 1.00,
-        color: 0x913f0d,
-        backgroundColor: 0x1b1917,
+        color: isSamsung ? 0x2189ff : 0x913f0d,
+        backgroundColor: isSamsung ? 0x1428a0 : 0x1b1917,
         backgroundAlpha: 1
       });
+      topologyInstances.push(inst);
     });
   }
 
@@ -414,6 +478,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    initThemeToggle();
     initNav();
     initHeroVanta();
     initTopologyBackgrounds();
