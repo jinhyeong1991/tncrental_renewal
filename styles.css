@@ -2869,3 +2869,9 @@ textarea:focus-visible,
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* 창업 프로세스 1~7 원형 숫자: 라이트 블루 배경 + 블랙 텍스트 */
+:root[data-theme="samsung"] .timeline__step::before {
+  background: #bcd4ff;
+  color: #101828;
+}
