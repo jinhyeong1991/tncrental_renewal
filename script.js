@@ -189,9 +189,10 @@
       color2: 0xf9a865,
       backgroundColor: 0x121110,
       backgroundAlpha: 0,
-      size: 4.00,
-      spacing: 28.00,
-      showLines: false
+      size: 2.60,
+      spacing: 26.00,
+      showLines: false,
+      speed: 1.7
     });
   }
 
