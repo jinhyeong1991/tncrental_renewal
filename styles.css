@@ -2819,12 +2819,45 @@ textarea:focus-visible,
   border-top-color: var(--line);
 }
 
-/* 필터 버튼(창업비용 상세 보기 등): 화이트 배경 대신 블루 그라디언트 버튼 유지 */
+/* 창업비용 상세 보기 등: 채워진 블록 대신 화이트+블루 아웃라인 버튼 */
 :root[data-theme="samsung"] .btn-dark {
-  background: linear-gradient(135deg, #2189ff, #1428a0);
-  color: #ffffff;
+  background: #ffffff;
+  color: #1428a0;
+  border-color: #1428a0;
 }
 
 :root[data-theme="samsung"] .btn-dark:hover {
-  background: linear-gradient(135deg, #1428a0, #0f1f7a);
+  background: #eaf1ff;
+  border-color: #1428a0;
+}
+
+/* 골드 그라디언트 배지/버튼들: 배경은 블루 그라디언트로 유지되지만,
+   텍스트는 어두운 골드(navy-950)가 아니라 화이트로 — 안 그러면 블루 위에 블루 텍스트가 겹쳐 안 보임 */
+:root[data-theme="samsung"] .btn-primary,
+:root[data-theme="samsung"] .float-cta,
+:root[data-theme="samsung"] .nav-link[aria-current="page"],
+:root[data-theme="samsung"] .price-card__badge,
+:root[data-theme="samsung"] .footer-brand .brand__mark svg {
+  color: #ffffff;
+}
+
+/* CTA 배너 뒤편 블루 글로우: 진하게 남아있던 것을 아주 은은하게 */
+:root[data-theme="samsung"] .cta-banner::after {
+  display: none;
+}
+
+/* WHY NOW 번호 원형: 채워진 블루 대신 화이트+블루 아웃라인 */
+:root[data-theme="samsung"] .icon-list__item .dot {
+  background: #eaf1ff;
+  border: 1.5px solid #1428a0;
+  color: #1428a0;
+}
+
+/* 헤더 로고 마크: 두 가지 톤 섞인 그라디언트 대신 단일 플랫 블루 + 화이트 아이콘 */
+:root[data-theme="samsung"] .brand__mark {
+  background: #1428a0;
+}
+
+:root[data-theme="samsung"] .brand__mark svg {
+  color: #ffffff;
 }
