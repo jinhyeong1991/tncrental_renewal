@@ -2737,11 +2737,20 @@ textarea:focus-visible,
   color: #101828;
 }
 
-:root[data-theme="samsung"] .page-hero--about,
-:root[data-theme="samsung"] .page-hero--business,
-:root[data-theme="samsung"] .page-hero--pricing,
+:root[data-theme="samsung"] .page-hero--about {
+  background-image: url('images/banner-about2.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--business {
+  background-image: url('images/banner-business2.jpg');
+}
+
+:root[data-theme="samsung"] .page-hero--pricing {
+  background-image: url('images/banner-pricing2.jpg');
+}
+
 :root[data-theme="samsung"] .page-hero--contact {
-  background-image: none;
+  background-image: url('images/banner-contact2.jpg');
 }
 
 :root[data-theme="samsung"] .breadcrumb {
