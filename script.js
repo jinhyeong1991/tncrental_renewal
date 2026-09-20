@@ -477,6 +477,387 @@
     }
   }
 
+  /* ---------- [v2] 실시간 예상 수익 시뮬레이터 ---------- */
+  function initRevenueCalculator() {
+    var rangeWater = document.getElementById('rangeWater');
+    var rangeChair = document.getElementById('rangeChair');
+    var rangeAppliance = document.getElementById('rangeAppliance');
+
+    if (!rangeWater || !rangeChair || !rangeAppliance) return;
+
+    var valWater = document.getElementById('valWater');
+    var valChair = document.getElementById('valChair');
+    var valAppliance = document.getElementById('valAppliance');
+
+    var totalCountDisplay = document.getElementById('totalCountDisplay');
+    var totalMonthlyDisplay = document.getElementById('totalMonthlyDisplay');
+    var totalYearlyDisplay = document.getElementById('totalYearlyDisplay');
+
+    var bdWaterCount = document.getElementById('bdWaterCount');
+    var bdWaterSum = document.getElementById('bdWaterSum');
+    var bdChairCount = document.getElementById('bdChairCount');
+    var bdChairSum = document.getElementById('bdChairSum');
+    var bdApplianceCount = document.getElementById('bdApplianceCount');
+    var bdApplianceSum = document.getElementById('bdApplianceSum');
+
+    var PRICE_WATER = 300000;      // 건당 30만 원
+    var PRICE_CHAIR = 500000;      // 건당 50만 원
+    var PRICE_APPLIANCE = 400000;  // 건당 40만 원
+
+    function calculate() {
+      var wCount = parseInt(rangeWater.value, 10) || 0;
+      var cCount = parseInt(rangeChair.value, 10) || 0;
+      var aCount = parseInt(rangeAppliance.value, 10) || 0;
+
+      // 뱃지 건수 업데이트
+      if (valWater) valWater.textContent = wCount;
+      if (valChair) valChair.textContent = cCount;
+      if (valAppliance) valAppliance.textContent = aCount;
+
+      // 총 판매 건수
+      var totalCount = wCount + cCount + aCount;
+      if (totalCountDisplay) totalCountDisplay.textContent = totalCount;
+
+      // 카테고리별 합산
+      var sumWater = wCount * PRICE_WATER;
+      var sumChair = cCount * PRICE_CHAIR;
+      var sumAppliance = aCount * PRICE_APPLIANCE;
+      var monthlyTotal = sumWater + sumChair + sumAppliance;
+      var yearlyTotal = monthlyTotal * 12;
+
+      // 내역 표기
+      if (bdWaterCount) bdWaterCount.textContent = wCount;
+      if (bdWaterSum) bdWaterSum.textContent = (sumWater / 10000).toLocaleString('ko-KR') + '만 원';
+
+      if (bdChairCount) bdChairCount.textContent = cCount;
+      if (bdChairSum) bdChairSum.textContent = (sumChair / 10000).toLocaleString('ko-KR') + '만 원';
+
+      if (bdApplianceCount) bdApplianceCount.textContent = aCount;
+      if (bdApplianceSum) bdApplianceSum.textContent = (sumAppliance / 10000).toLocaleString('ko-KR') + '만 원';
+
+      // 최종 월 수익
+      if (totalMonthlyDisplay) {
+        totalMonthlyDisplay.textContent = monthlyTotal.toLocaleString('ko-KR');
+      }
+
+      // 최종 연 환산 수익
+      if (totalYearlyDisplay) {
+        var yearlyMan = Math.round(yearlyTotal / 10000);
+        if (yearlyMan >= 10000) {
+          var eok = Math.floor(yearlyMan / 10000);
+          var restMan = yearlyMan % 10000;
+          totalYearlyDisplay.textContent = '약 ' + eok + '억 ' + (restMan > 0 ? restMan.toLocaleString('ko-KR') + '만 ' : '') + '원';
+        } else {
+          totalYearlyDisplay.textContent = '약 ' + yearlyMan.toLocaleString('ko-KR') + '만 원';
+        }
+      }
+    }
+
+    rangeWater.addEventListener('input', calculate);
+    rangeChair.addEventListener('input', calculate);
+    rangeAppliance.addEventListener('input', calculate);
+
+    calculate();
+  }
+
+  /* ---------- [v2] FAQ 아코디언 토글 ---------- */
+  function initFaqAccordion() {
+    var accordion = document.getElementById('faqAccordion');
+    if (!accordion) return;
+
+    var buttons = accordion.querySelectorAll('.faq-item__question');
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        var targetId = btn.getAttribute('aria-controls');
+        var answer = document.getElementById(targetId);
+
+        // 현재 클릭된 것 토글
+        if (isExpanded) {
+          btn.setAttribute('aria-expanded', 'false');
+          if (answer) {
+            answer.setAttribute('hidden', '');
+            answer.classList.remove('is-open');
+          }
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          if (answer) {
+            answer.removeAttribute('hidden');
+            answer.classList.add('is-open');
+          }
+        }
+      });
+    });
+  }
+
+  /* ---------- [v2] 24H AI 상담 실시간 채팅 시뮬레이션 (렌탈료 비교/프로모션/제휴카드/추천상품) ---------- */
+  function initAiChatDemo() {
+    var log = document.getElementById('chatLog');
+    var bar = document.getElementById('chatBar');
+    var typedTextEl = document.getElementById('chatTypedText');
+    var sendBtn = document.getElementById('chatSendBtn');
+    if (!log || !bar || !typedTextEl) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var PRODUCT_NAME = '코웨이 아이콘 정수기 CHP-6210L (3년 약정)';
+
+    var turns = [
+      {
+        q: '다른 렌탈사보다 비싼가요?',
+        intro: '고객님이 보고 계신 <strong>코웨이 아이콘 정수기 CHP-6210L</strong> 기준으로 주요 렌탈사 월 요금을 비교해드릴게요.',
+        bullets: [
+          '<strong>코웨이 다이렉트</strong> 39,900원 · 자가관리형 기준가',
+          '<strong>SK매직 직영</strong> 35,900원 · 6개월 프로모션가',
+          '<strong>티앤씨 파트너몰</strong> 32,900원 · 본사 직거래 최저가'
+        ],
+        outro: '같은 모델도 가입 경로에 따라 최대 7,000원까지 차이가 나요. 지금처럼 진행하시면 가장 유리한 조건으로 계약하실 수 있어요!'
+      },
+      {
+        q: '이번 달 진행 중인 프로모션이 궁금해요',
+        intro: '네! 이번 달 한정으로 진행 중인 혜택을 안내해드릴게요.',
+        bullets: [
+          '<strong>3개월 렌탈료 50% 할인</strong> · 첫 납부 부담을 크게 낮춰드려요',
+          '<strong>사은품 증정</strong> · 신청 즉시 소형가전 사은품 1종 무료 증정',
+          '<strong>장기약정 추가할인</strong> · 5년 약정 시 매달 2,000원 추가 할인'
+        ],
+        outro: '프로모션은 이달 말까지만 적용되니 서둘러 상담받아보시는 걸 추천드려요!'
+      },
+      {
+        q: '제휴카드로 더 할인 받을 수 있나요?',
+        intro: '보유하신 카드에 따라 추가 할인을 받으실 수 있어요.',
+        bullets: [
+          '<strong>신한카드</strong> 매달 자동이체 시 8,000원 청구할인',
+          '<strong>삼성카드</strong> 매달 자동이체 시 7,000원 청구할인',
+          '<strong>현대카드</strong> 매달 자동이체 시 7,000원 청구할인'
+        ],
+        outro: '카드 실적 조건은 카드사별로 상이하니, 보유 카드를 알려주시면 정확한 할인 조건을 바로 확인해드릴게요!'
+      },
+      {
+        q: '이 상품과 비슷한 상품도 추천해줘',
+        intro: '고객님 취향에 맞춰 함께 보면 좋은 상품을 추천해드려요.',
+        bullets: [
+          '<strong>안마의자</strong> · 하루 피로를 풀어주는 인기 재구매 1위 상품',
+          '<strong>매트리스</strong> · 정수기와 함께 렌탈 시 설치비 무료 혜택',
+          '<strong>공기청정기</strong> · 미세먼지 심한 환절기 필수템, 결합 할인 가능'
+        ],
+        outro: '관심 있는 상품을 말씀해주시면 바로 견적을 안내해드릴게요!'
+      }
+    ];
+
+    function buildIntroEl() {
+      var el = document.createElement('div');
+      el.className = 'chat-intro';
+      el.innerHTML =
+        '<span class="chat-app__tag">렌탈</span>' +
+        '<h4 class="chat-app__title">AI 상담과<br>대화를 시작해볼까요?</h4>' +
+        '<div class="chat-app__product"><span>지금 보고 계신 상품</span><strong>' + PRODUCT_NAME + '</strong></div>';
+      return el;
+    }
+
+    function buildUserMsgEl(text) {
+      var el = document.createElement('div');
+      el.className = 'chat-log-msg chat-log-msg--user';
+      el.innerHTML = '<span class="chat-bubble"></span>';
+      el.querySelector('.chat-bubble').textContent = text;
+      return el;
+    }
+
+    function buildTypingEl() {
+      var el = document.createElement('div');
+      el.className = 'chat-log-msg chat-log-msg--ai';
+      el.innerHTML =
+        '<div class="chat-ai-head"><span class="chat-avatar">AI</span><span class="chat-ai-name">AI 상담사</span><span class="chat-online-dot"></span></div>' +
+        '<div class="chat-typing-row"><i></i><i></i><i></i></div>';
+      return el;
+    }
+
+    function buildAnswerEl(turn) {
+      var el = document.createElement('div');
+      el.className = 'chat-log-msg chat-log-msg--ai';
+      var bullets = turn.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
+      el.innerHTML =
+        '<div class="chat-ai-head"><span class="chat-avatar">AI</span><span class="chat-ai-name">AI 상담사</span><span class="chat-online-dot"></span></div>' +
+        '<div class="chat-ai-answer">' +
+          '<p>' + turn.intro + '</p>' +
+          '<ul>' + bullets + '</ul>' +
+          '<p>' + turn.outro + '</p>' +
+        '</div>';
+      return el;
+    }
+
+    function scrollToBottom() {
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // 접근성: 동작 최소화 선호 시 애니메이션 없이 전체 대화를 정적으로 표시
+    if (reduceMotion) {
+      var introStatic = buildIntroEl();
+      introStatic.classList.add('is-in');
+      log.appendChild(introStatic);
+      turns.forEach(function (turn) {
+        var u = buildUserMsgEl(turn.q);
+        u.classList.add('is-in');
+        log.appendChild(u);
+        var a = buildAnswerEl(turn);
+        a.classList.add('is-in');
+        log.appendChild(a);
+      });
+      return;
+    }
+
+    var timer = null;
+    var turnIndex = 0;
+
+    function typeIntoBar(text, cb) {
+      bar.classList.add('is-typing');
+      typedTextEl.textContent = '';
+      var idx = 0;
+      function step() {
+        if (idx <= text.length) {
+          typedTextEl.textContent = text.slice(0, idx);
+          idx++;
+          timer = setTimeout(step, 38 + Math.random() * 34);
+        } else {
+          timer = setTimeout(cb, 450);
+        }
+      }
+      step();
+    }
+
+    function resetBar() {
+      bar.classList.remove('is-typing');
+      typedTextEl.textContent = '';
+    }
+
+    function runTurn() {
+      if (turnIndex >= turns.length) {
+        timer = setTimeout(function () {
+          log.classList.add('is-fading');
+          timer = setTimeout(function () {
+            log.innerHTML = '';
+            log.classList.remove('is-fading');
+            turnIndex = 0;
+            var intro = buildIntroEl();
+            log.appendChild(intro);
+            requestAnimationFrame(function () { intro.classList.add('is-in'); });
+            timer = setTimeout(runTurn, 1800);
+          }, 420);
+        }, 2400);
+        return;
+      }
+
+      var turn = turns[turnIndex++];
+
+      typeIntoBar(turn.q, function () {
+        if (sendBtn) {
+          sendBtn.classList.add('is-active');
+          setTimeout(function () { sendBtn.classList.remove('is-active'); }, 220);
+        }
+        resetBar();
+
+        var userEl = buildUserMsgEl(turn.q);
+        log.appendChild(userEl);
+        scrollToBottom();
+        requestAnimationFrame(function () { userEl.classList.add('is-in'); });
+
+        timer = setTimeout(function () {
+          var typingEl = buildTypingEl();
+          log.appendChild(typingEl);
+          scrollToBottom();
+          requestAnimationFrame(function () { typingEl.classList.add('is-in'); });
+
+          timer = setTimeout(function () {
+            typingEl.remove();
+            var answerEl = buildAnswerEl(turn);
+            log.appendChild(answerEl);
+            scrollToBottom();
+            requestAnimationFrame(function () { answerEl.classList.add('is-in'); });
+
+            timer = setTimeout(runTurn, 3200);
+          }, 1000);
+        }, 450);
+      });
+    }
+
+    var firstIntro = buildIntroEl();
+    log.appendChild(firstIntro);
+    requestAnimationFrame(function () { firstIntro.classList.add('is-in'); });
+    timer = setTimeout(runTurn, 1800);
+  }
+
+  /* ---------- [v2] 1분 간편 상담 폼 피드백 및 전화번호 포맷팅 ---------- */
+  function initQuickLeadForm() {
+    var form = document.getElementById('quickLeadForm');
+    if (!form) return;
+
+    var phoneInput = document.getElementById('leadPhone');
+    var statusBox = document.getElementById('quickLeadStatus');
+
+    // 휴대폰 번호 자동 하이픈 (-) 서식화
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function (e) {
+        var num = e.target.value.replace(/[^0-9]/g, '');
+        if (num.length < 4) {
+          e.target.value = num;
+        } else if (num.length < 8) {
+          e.target.value = num.substr(0, 3) + '-' + num.substr(3);
+        } else if (num.length <= 11) {
+          e.target.value = num.substr(0, 3) + '-' + num.substr(3, 4) + '-' + num.substr(7);
+        } else {
+          e.target.value = num.substr(0, 3) + '-' + num.substr(3, 4) + '-' + num.substr(7, 4);
+        }
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameInput = document.getElementById('leadName');
+      var agreeCheck = document.getElementById('leadAgree');
+
+      var nameVal = nameInput ? nameInput.value.trim() : '';
+      var phoneVal = phoneInput ? phoneInput.value.replace(/[^0-9]/g, '') : '';
+      var isAgreed = agreeCheck ? agreeCheck.checked : false;
+
+      if (!nameVal) {
+        if (statusBox) {
+          statusBox.textContent = '성함 또는 대표자명을 입력해주세요.';
+          statusBox.className = 'quick-lead-status is-error';
+        }
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      if (phoneVal.length < 9 || phoneVal.length > 11) {
+        if (statusBox) {
+          statusBox.textContent = '올바른 휴대폰 번호를 입력해주세요.';
+          statusBox.className = 'quick-lead-status is-error';
+        }
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      if (!isAgreed) {
+        if (statusBox) {
+          statusBox.textContent = '개인정보 수집 동의에 체크해주세요.';
+          statusBox.className = 'quick-lead-status is-error';
+        }
+        return;
+      }
+
+      // 성공 피드백
+      if (statusBox) {
+        statusBox.textContent = '✓ 신청이 완료되었습니다! 24시간 내로 전문 컨설턴트가 연락드리겠습니다.';
+        statusBox.className = 'quick-lead-status is-success';
+      }
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '상담 접수 완료';
+      }
+    });
+  }
   document.addEventListener('DOMContentLoaded', function () {
     initThemeToggle();
     initNav();
@@ -488,5 +869,11 @@
     initYear();
     initContactForm();
     initKakaoMap();
+    initRevenueCalculator();
+    initFaqAccordion();
+    initQuickLeadForm();
+    initAiChatDemo();
   });
 })();
+
+
