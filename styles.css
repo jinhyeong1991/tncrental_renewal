@@ -790,9 +790,9 @@ textarea:focus-visible,
   gap: 8px;
 }
 
-/* 블루(삼성) 테마에서는 메인 히어로를 화이트+라이트블루 톤, 어두운 텍스트로 전환 */
+/* 블루(삼성) 테마에서는 메인 히어로를 화이트 배경 + 어두운 텍스트로 전환 */
 :root[data-theme="samsung"] .hero {
-  background: #eaf1ff;
+  background: #ffffff;
   color: #101828;
 }
 
