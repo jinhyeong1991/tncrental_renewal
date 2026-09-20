@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>티앤씨렌탈 홈페이지 19종 아이콘 공식 에셋 라이브러리</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  :root {
+    --font: 'Pretendard', -apple-system, sans-serif;
+    --navy-950: #121110;
+    --navy-900: #1b1917;
+    --gold-500: #f27405;
+    --blue-500: #1428a0;
+    --cream-50: #f8f5ee;
+    --line: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: #f8fafc;
+    color: #0f172a;
+    padding: 40px 24px 80px;
+    line-height: 1.6;
+  }
+  .header {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: center;
+    background: #ffffff;
+    padding: 36px 24px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .header p {
+    font-size: 15px;
+    color: #64748b;
+    max-width: 680px;
+    margin: 0 auto 20px;
+  }
+  .header-stats {
+    display: inline-flex;
+    gap: 16px;
+    padding: 8px 20px;
+    background: #f1f5f9;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+  }
+  .header-stats strong { color: var(--gold-500); }
+
+  .grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 22px;
+  }
+
+  .icon-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .icon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.07);
+    border-color: #cbd5e1;
+  }
+
+  .icon-card__visuals {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .icon-preview-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 10px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+  }
+  .icon-preview-box--orange {
+    background: #fffbf7;
+  }
+  .icon-preview-box--blue {
+    background: #f6f9ff;
+  }
+  .icon-preview-box img {
+    display: block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+  }
+  .preview-tag {
+    font-size: 11px;
+    font-weight: 800;
+    font-family: monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #ffedd5;
+    color: #c2410c;
+  }
+  .preview-tag--blue {
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  .icon-card__info {
+    flex-grow: 1;
+    margin-bottom: 16px;
+  }
+  .icon-no {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .icon-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .icon-usage, .icon-loc {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .icon-card__actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .btn-dl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    text-align: center;
+  }
+  .btn-dl--orange {
+    background: #ffedd5;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+  }
+  .btn-dl--orange:hover { background: #fdba74; color: #7c2d12; }
+  .btn-dl--blue {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+  }
+  .btn-dl--blue:hover { background: #93c5fd; color: #1e3a8a; }
+  .btn-dl--raw {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+  .btn-dl--raw:hover { background: #e2e8f0; color: #0f172a; }
+  .btn-dl--png {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+  .btn-dl--png:hover { background: #6ee7b7; color: #064e3b; }
+
+  .footer-nav {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #64748b;
+  }
+  .footer-nav a {
+    color: var(--gold-500);
+    font-weight: 700;
+    text-decoration: none;
+    margin: 0 8px;
+  }
+  .footer-nav a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>티앤씨렌탈 홈페이지 19종 공식 아이콘 에셋</h1>
+  <p>‘티앤씨렌탈_아이콘_리스트.xlsx’ 엑셀 기획서 기준 100% 규격 일치<br>오렌지(기본) 테마 / 블루(삼성) 테마 색상 및 배지형·PNG 에셋 완비</p>
+  <div class="header-stats">
+    <span>총 아이콘: <strong>19종</strong></span>
+    <span>SVG 에셋: <strong>95개</strong></span>
+    <span>고해상도 PNG: <strong>76개</strong></span>
+    <span>규격: <strong>벡터 24x24 / 배지 48x48</strong></span>
+  </div>
+</div>
+
+<div class="grid">
+  
+        <div class="icon-card" data-no="1">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-01-brand-store-badge-orange.svg" alt="매장/집 (브랜드 마크) 오렌지" width="48" height="48">
+              <span class="preview-tag">#F9A865</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-01-brand-store-badge-blue.svg" alt="매장/집 (브랜드 마크) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#5AA5FF</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#01</div>
+            <h3 class="icon-title">매장/집 (브랜드 마크)</h3>
+            <p class="icon-usage"><strong>용도:</strong> 티앤씨렌탈 로고 심볼</p>
+            <p class="icon-loc"><strong>위치:</strong> 헤더 로고, 통계카드, WHY T&C, 푸터 로고</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-01-brand-store-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-01-brand-store-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-01-brand-store.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-01-brand-store-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="2">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-02-shield-badge-orange.svg" alt="방패 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-02-shield-badge-blue.svg" alt="방패 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#02</div>
+            <h3 class="icon-title">방패</h3>
+            <p class="icon-usage"><strong>용도:</strong> 전문성 · 경력</p>
+            <p class="icon-loc"><strong>위치:</strong> 통계카드, WHY T&C</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-02-shield-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-02-shield-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-02-shield.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-02-shield-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="3">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-03-users-badge-orange.svg" alt="사람 2명 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-03-users-badge-blue.svg" alt="사람 2명 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#03</div>
+            <h3 class="icon-title">사람 2명</h3>
+            <p class="icon-usage"><strong>용도:</strong> 파트너 · 고객 규모</p>
+            <p class="icon-loc"><strong>위치:</strong> 통계카드, AI특장점</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-03-users-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-03-users-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-03-users.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-03-users-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="4">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-04-clock-badge-orange.svg" alt="시계 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-04-clock-badge-blue.svg" alt="시계 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#04</div>
+            <h3 class="icon-title">시계</h3>
+            <p class="icon-usage"><strong>용도:</strong> 시간 · 신속함</p>
+            <p class="icon-loc"><strong>위치:</strong> 히어로 문구, 통계카드, WHY T&C</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-04-clock-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-04-clock-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-04-clock.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-04-clock-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="5">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-05-zap-badge-orange.svg" alt="번개 오렌지" width="48" height="48">
+              <span class="preview-tag">#F27405</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-05-zap-badge-blue.svg" alt="번개 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#1428A0</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#05</div>
+            <h3 class="icon-title">번개</h3>
+            <p class="icon-usage"><strong>용도:</strong> 속도 · 수수료 강조</p>
+            <p class="icon-loc"><strong>위치:</strong> 히어로 배지, WHY T&C, 우측 플로팅 버튼</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-05-zap-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-05-zap-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-05-zap.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-05-zap-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="6">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-06-check-circle-badge-orange.svg" alt="체크 원(✓) 오렌지" width="48" height="48">
+              <span class="preview-tag">#F68A2E</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-06-check-circle-badge-blue.svg" alt="체크 원(✓) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#2189FF</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#06</div>
+            <h3 class="icon-title">체크 원(✓)</h3>
+            <p class="icon-usage"><strong>용도:</strong> 장점 · 완료 표시</p>
+            <p class="icon-loc"><strong>위치:</strong> 히어로 리스트, 몰 타입 카드 4곳</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-06-check-circle-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-06-check-circle-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-06-check-circle.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-06-check-circle-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="7">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-07-sparkle-badge-orange.svg" alt="반짝임 / 햇살 (AI) 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-07-sparkle-badge-blue.svg" alt="반짝임 / 햇살 (AI) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#07</div>
+            <h3 class="icon-title">반짝임 / 햇살 (AI)</h3>
+            <p class="icon-usage"><strong>용도:</strong> AI 3초 자동 요약</p>
+            <p class="icon-loc"><strong>위치:</strong> AI 특장점 POINT 01</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-07-sparkle-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-07-sparkle-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-07-sparkle.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-07-sparkle-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="8">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-08-chat-badge-orange.svg" alt="말풍선 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-08-chat-badge-blue.svg" alt="말풍선 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#08</div>
+            <h3 class="icon-title">말풍선</h3>
+            <p class="icon-usage"><strong>용도:</strong> 상담 · 컨설팅</p>
+            <p class="icon-loc"><strong>위치:</strong> AI 특장점 POINT 02, 로드맵 STEP 01</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-08-chat-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-08-chat-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-08-chat.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-08-chat-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="9">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-09-monitor-badge-orange.svg" alt="모니터 오렌지" width="48" height="48">
+              <span class="preview-tag">#121110</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-09-monitor-badge-blue.svg" alt="모니터 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#071A5C</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#09</div>
+            <h3 class="icon-title">모니터</h3>
+            <p class="icon-usage"><strong>용도:</strong> 쇼핑몰 세팅</p>
+            <p class="icon-loc"><strong>위치:</strong> 로드맵 STEP 02</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-09-monitor-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-09-monitor-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-09-monitor.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-09-monitor-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="10">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-10-book-badge-orange.svg" alt="책 오렌지" width="48" height="48">
+              <span class="preview-tag">#121110</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-10-book-badge-blue.svg" alt="책 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#071A5C</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#10</div>
+            <h3 class="icon-title">책</h3>
+            <p class="icon-usage"><strong>용도:</strong> 마케팅 교육</p>
+            <p class="icon-loc"><strong>위치:</strong> 로드맵 STEP 03</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-10-book-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-10-book-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-10-book.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-10-book-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="11">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-11-settlement-won-badge-orange.svg" alt="원화(₩) / 정산 기호 오렌지" width="48" height="48">
+              <span class="preview-tag">#121110</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-11-settlement-won-badge-blue.svg" alt="원화(₩) / 정산 기호 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#FFFFFF</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#11</div>
+            <h3 class="icon-title">원화(₩) / 정산 기호</h3>
+            <p class="icon-usage"><strong>용도:</strong> 수수료 정산</p>
+            <p class="icon-loc"><strong>위치:</strong> 로드맵 STEP 04 (강조 카드)</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-11-settlement-won-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-11-settlement-won-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-11-settlement-won.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-11-settlement-won-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="12">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-12-warehouse-badge-orange.svg" alt="창고 / 건물 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-12-warehouse-badge-blue.svg" alt="창고 / 건물 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#12</div>
+            <h3 class="icon-title">창고 / 건물</h3>
+            <p class="icon-usage"><strong>용도:</strong> 본사 직거래 접수처</p>
+            <p class="icon-loc"><strong>위치:</strong> WHY T&C '렌탈사 본사 직거래 접수처'</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-12-warehouse-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-12-warehouse-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-12-warehouse.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-12-warehouse-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="13">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-13-pulse-trust-badge-orange.svg" alt="파동 / 신뢰 (하트비트) 오렌지" width="48" height="48">
+              <span class="preview-tag">#D9640A</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-13-pulse-trust-badge-blue.svg" alt="파동 / 신뢰 (하트비트) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#0F1F7A</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#13</div>
+            <h3 class="icon-title">파동 / 신뢰 (하트비트)</h3>
+            <p class="icon-usage"><strong>용도:</strong> 정직 · 신뢰</p>
+            <p class="icon-loc"><strong>위치:</strong> WHY T&C '정도 영업 30만 신뢰'</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-13-pulse-trust-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-13-pulse-trust-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-13-pulse-trust.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-13-pulse-trust-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="14">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-14-phone-badge-orange.svg" alt="전화 수화기 오렌지" width="48" height="48">
+              <span class="preview-tag">#F27405</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-14-phone-badge-blue.svg" alt="전화 수화기 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#1428A0</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#14</div>
+            <h3 class="icon-title">전화 수화기</h3>
+            <p class="icon-usage"><strong>용도:</strong> 연락처</p>
+            <p class="icon-loc"><strong>위치:</strong> 헤더, 푸터 연락처</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-14-phone-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-14-phone-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-14-phone.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-14-phone-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="15">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-15-lock-badge-orange.svg" alt="자물쇠 오렌지" width="48" height="48">
+              <span class="preview-tag">#10B981</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-15-lock-badge-blue.svg" alt="자물쇠 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#10B981</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#15</div>
+            <h3 class="icon-title">자물쇠</h3>
+            <p class="icon-usage"><strong>용도:</strong> 보안 표시</p>
+            <p class="icon-loc"><strong>위치:</strong> AI 데모 브라우저 주소창</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-15-lock-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-15-lock-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-15-lock.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-15-lock-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="16">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-16-arrow-up-send-badge-orange.svg" alt="위쪽 화살표 (전송) 오렌지" width="48" height="48">
+              <span class="preview-tag">#F27405</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-16-arrow-up-send-badge-blue.svg" alt="위쪽 화살표 (전송) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#1428A0</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#16</div>
+            <h3 class="icon-title">위쪽 화살표 (전송)</h3>
+            <p class="icon-usage"><strong>용도:</strong> 채팅 전송 버튼</p>
+            <p class="icon-loc"><strong>위치:</strong> AI 챗 입력창 전송 버튼</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-16-arrow-up-send-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-16-arrow-up-send-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-16-arrow-up-send.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-16-arrow-up-send-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="17">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-17-external-link-badge-orange.svg" alt="외부링크 오렌지" width="48" height="48">
+              <span class="preview-tag">#F27405</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-17-external-link-badge-blue.svg" alt="외부링크 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#1428A0</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#17</div>
+            <h3 class="icon-title">외부링크</h3>
+            <p class="icon-usage"><strong>용도:</strong> 새 창 이동 표시</p>
+            <p class="icon-loc"><strong>위치:</strong> '샘플 사이트' 플로팅 버튼</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-17-external-link-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-17-external-link-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-17-external-link.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-17-external-link-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="18">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-18-theme-toggle-badge-orange.svg" alt="라이트/다크 반원 오렌지" width="48" height="48">
+              <span class="preview-tag">#1428A0</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-18-theme-toggle-badge-blue.svg" alt="라이트/다크 반원 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#1428A0</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#18</div>
+            <h3 class="icon-title">라이트/다크 반원</h3>
+            <p class="icon-usage"><strong>용도:</strong> 테마 전환 버튼</p>
+            <p class="icon-loc"><strong>위치:</strong> 헤더 테마 토글</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-18-theme-toggle-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-18-theme-toggle-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-18-theme-toggle.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-18-theme-toggle-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+        <div class="icon-card" data-no="19">
+          <div class="icon-card__visuals">
+            <div class="icon-preview-box icon-preview-box--orange" title="오렌지 테마 배지">
+              <img src="images/icons/icon-19-chevron-down-badge-orange.svg" alt="쉐브론 (∨) 오렌지" width="48" height="48">
+              <span class="preview-tag">#4A443E</span>
+            </div>
+            <div class="icon-preview-box icon-preview-box--blue" title="블루 테마 배지">
+              <img src="images/icons/icon-19-chevron-down-badge-blue.svg" alt="쉐브론 (∨) 블루" width="48" height="48">
+              <span class="preview-tag preview-tag--blue">#33415C</span>
+            </div>
+          </div>
+          <div class="icon-card__info">
+            <div class="icon-no">#19</div>
+            <h3 class="icon-title">쉐브론 (∨)</h3>
+            <p class="icon-usage"><strong>용도:</strong> 드롭다운 펼침 표시</p>
+            <p class="icon-loc"><strong>위치:</strong> '쇼핑몰 바로가기' 화살표</p>
+          </div>
+          <div class="icon-card__actions">
+            <a href="images/icons/icon-19-chevron-down-badge-orange.svg" download class="btn-dl btn-dl--orange" title="오렌지 SVG 다운로드">오렌지 SVG</a>
+            <a href="images/icons/icon-19-chevron-down-badge-blue.svg" download class="btn-dl btn-dl--blue" title="블루 SVG 다운로드">블루 SVG</a>
+            <a href="images/icons/icon-19-chevron-down.svg" download class="btn-dl btn-dl--raw" title="표준 SVG 다운로드">표준 SVG</a>
+            <a href="images/icons/png/icon-19-chevron-down-badge-orange-256.png" download class="btn-dl btn-dl--png" title="256px PNG 다운로드">PNG</a>
+          </div>
+        </div>
+</div>
+
+<div class="footer-nav">
+  <a href="index2.html">← 티앤씨렌탈 홈(index2.html)으로 이동</a>
+  <span>|</span>
+  <a href="index.html">기본 버전(index.html)</a>
+</div>
+
+</body>
+</html>

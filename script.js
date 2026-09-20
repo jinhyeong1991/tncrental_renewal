@@ -64,6 +64,15 @@
     });
   }
 
+  /* ---------- 내비게이션 드롭다운 공통 닫기 헬퍼 (쇼핑몰 바로가기) ---------- */
+  function closeNavDropdowns() {
+    document.querySelectorAll('.nav-dropdown.is-open').forEach(function (dropdown) {
+      dropdown.classList.remove('is-open');
+      var toggle = dropdown.querySelector('[data-nav-dropdown-toggle]');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   /* ---------- Mobile hamburger nav ---------- */
   function initNav() {
     var toggle = document.querySelector('[data-nav-toggle]');
@@ -73,6 +82,7 @@
     toggle.addEventListener('click', function () {
       var isOpen = nav.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(isOpen));
+      if (!isOpen) closeNavDropdowns();
     });
 
     // Close menu when a nav link is clicked (mobile)
@@ -80,6 +90,7 @@
       link.addEventListener('click', function () {
         nav.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
+        closeNavDropdowns();
       });
     });
 
@@ -89,7 +100,41 @@
         nav.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.focus();
+        closeNavDropdowns();
       }
+    });
+  }
+
+  /* ---------- 상단 내비게이션 드롭다운 (쇼핑몰 바로가기: 종합몰 + 제휴사 단독몰) ---------- */
+  function initNavDropdowns() {
+    var dropdowns = document.querySelectorAll('[data-nav-dropdown]');
+    if (!dropdowns.length) return;
+
+    dropdowns.forEach(function (dropdown) {
+      var toggle = dropdown.querySelector('[data-nav-dropdown-toggle]');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wasOpen = dropdown.classList.contains('is-open');
+        closeNavDropdowns();
+        if (!wasOpen) {
+          dropdown.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // 바깥 영역 클릭 시 닫기
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-nav-dropdown]')) {
+        closeNavDropdowns();
+      }
+    });
+
+    // Esc 키로 닫기
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeNavDropdowns();
     });
   }
 
@@ -861,6 +906,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initThemeToggle();
     initNav();
+    initNavDropdowns();
     initHeroVanta();
     initTopologyBackgrounds();
     initReveal();
