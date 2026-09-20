@@ -9,21 +9,15 @@
   var topologyInstances = [];
 
   /* 테마에 맞춰 이미 생성된 VANTA(WebGL/캔버스) 배경들의 색상을 즉시 갱신 */
-  function applyVantaTheme(theme) {
-    var isSamsung = theme === 'samsung';
-    // VANTA.DOTS는 setOptions만으로 color/color2 유니폼이 갱신되지 않는 경우가 있어
+  function applyVantaTheme() {
+    // VANTA.DOTS/TOPOLOGY는 setOptions만으로 color/color2 유니폼이 갱신되지 않는 경우가 있어
     // 인스턴스를 완전히 재생성해 확실하게 새 테마 색상을 반영한다.
     if (heroVantaInstance) {
       initHeroVanta();
     }
-    topologyInstances.forEach(function (inst) {
-      if (inst && inst.setOptions) {
-        inst.setOptions({
-          color: isSamsung ? 0x2189ff : 0x913f0d,
-          backgroundColor: isSamsung ? 0x1428a0 : 0x1b1917
-        });
-      }
-    });
+    if (topologyInstances.length) {
+      initTopologyBackgrounds();
+    }
   }
 
   /* ---------- 색상 테마 전환 (기본 / 삼성 블루톤), 전 페이지 공통 localStorage로 유지 ---------- */
@@ -43,7 +37,7 @@
         var label = btn.querySelector('[data-theme-toggle-label]');
         if (label) label.textContent = theme === 'samsung' ? '기본 테마' : '블루 테마';
       });
-      applyVantaTheme(theme);
+      applyVantaTheme();
     }
 
     var current = document.documentElement.getAttribute('data-theme') === 'samsung' ? 'samsung' : 'default';
@@ -317,6 +311,11 @@
     if (prefersReducedMotion) return; // 정적 배경 그대로 둠
 
     if (typeof VANTA === 'undefined' || !VANTA.TOPOLOGY) return; // CDN 로드 실패 시 조용히 무시
+
+    topologyInstances.forEach(function (inst) {
+      if (inst && inst.destroy) inst.destroy();
+    });
+    topologyInstances = [];
 
     var isSamsung = document.documentElement.getAttribute('data-theme') === 'samsung';
 
