@@ -928,11 +928,9 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var nameInput = document.getElementById('leadName');
-      var agreeCheck = document.getElementById('leadAgree');
 
       var nameVal = nameInput ? nameInput.value.trim() : '';
       var phoneVal = phoneInput ? phoneInput.value.replace(/[^0-9]/g, '') : '';
-      var isAgreed = agreeCheck ? agreeCheck.checked : false;
 
       if (!nameVal) {
         if (statusBox) {
@@ -949,14 +947,6 @@
           statusBox.className = 'quick-lead-status is-error';
         }
         if (phoneInput) phoneInput.focus();
-        return;
-      }
-
-      if (!isAgreed) {
-        if (statusBox) {
-          statusBox.textContent = '개인정보 수집 동의에 체크해주세요.';
-          statusBox.className = 'quick-lead-status is-error';
-        }
         return;
       }
 
