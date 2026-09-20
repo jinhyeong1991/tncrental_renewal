@@ -3167,6 +3167,7 @@ textarea:focus-visible,
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
 }
 
 .quick-lead-form label {
@@ -3177,6 +3178,8 @@ textarea:focus-visible,
 
 .quick-lead-form input,
 .quick-lead-form select {
+  width: 100%;
+  min-width: 0;
   height: 48px;
   padding: 0 16px;
   border: 1.5px solid var(--line);
