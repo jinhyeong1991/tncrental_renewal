@@ -2797,15 +2797,6 @@ textarea:focus-visible,
    (기본 오렌지 테마 색상 변수는 건드리지 않음)
    ========================================================= */
 
-/* 히어로: 점 애니메이션 배경 대신 순백 배경 */
-:root[data-theme="samsung"] .hero {
-  background: #ffffff;
-}
-
-:root[data-theme="samsung"] .hero__vanta {
-  display: none;
-}
-
 /* navy 섹션(왜 티앤씨렌탈/성장 스토리/프로세스 등): 화이트 배경 + 어두운 텍스트 */
 :root[data-theme="samsung"] .section--navy {
   background: #ffffff;
