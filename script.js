@@ -11,12 +11,10 @@
   /* 테마에 맞춰 이미 생성된 VANTA(WebGL/캔버스) 배경들의 색상을 즉시 갱신 */
   function applyVantaTheme(theme) {
     var isSamsung = theme === 'samsung';
-    if (heroVantaInstance && heroVantaInstance.setOptions) {
-      heroVantaInstance.setOptions({
-        color: isSamsung ? 0x1428a0 : 0xf27405,
-        color2: isSamsung ? 0x2189ff : 0xf9a865,
-        backgroundColor: isSamsung ? 0xeaf1ff : 0x121110
-      });
+    // VANTA.DOTS는 setOptions만으로 color/color2 유니폼이 갱신되지 않는 경우가 있어
+    // 인스턴스를 완전히 재생성해 확실하게 새 테마 색상을 반영한다.
+    if (heroVantaInstance) {
+      initHeroVanta();
     }
     topologyInstances.forEach(function (inst) {
       if (inst && inst.setOptions) {
@@ -282,6 +280,11 @@
     if (isMobile) return; // 모바일에서는 도트 애니메이션 없이 정적 배경만 사용
 
     if (typeof VANTA === 'undefined' || !VANTA.DOTS) return; // CDN 로드 실패 시 조용히 무시
+
+    if (heroVantaInstance && heroVantaInstance.destroy) {
+      heroVantaInstance.destroy();
+      heroVantaInstance = null;
+    }
 
     var isSamsung = document.documentElement.getAttribute('data-theme') === 'samsung';
 
@@ -605,32 +608,99 @@
     calculate();
   }
 
-  /* ---------- [v2] FAQ 아코디언 토글 ---------- */
+  /* ---------- FAQ 답변 타이핑 애니메이션 공통 헬퍼 ---------- */
+  function typewriterReveal(el, html, speed) {
+    if (el.__typeTimer) {
+      clearInterval(el.__typeTimer);
+      el.__typeTimer = null;
+    }
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    var text = tmp.textContent || '';
+    el.textContent = '';
+    el.classList.add('is-typing');
+    var i = 0;
+    el.__typeTimer = setInterval(function () {
+      i++;
+      el.textContent = text.slice(0, i);
+      if (i >= text.length) {
+        clearInterval(el.__typeTimer);
+        el.__typeTimer = null;
+        el.innerHTML = html;
+        el.classList.remove('is-typing');
+      }
+    }, speed || 16);
+  }
+
+  function resetTypewriter(el) {
+    if (el.__typeTimer) {
+      clearInterval(el.__typeTimer);
+      el.__typeTimer = null;
+    }
+    el.classList.remove('is-typing');
+    el.textContent = '';
+  }
+
+  /* ---------- [v2] FAQ 아코디언 토글 (Q1~Q5, 열 때마다 타이핑 애니메이션 재생) ---------- */
   function initFaqAccordion() {
     var accordion = document.getElementById('faqAccordion');
     if (!accordion) return;
 
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var buttons = accordion.querySelectorAll('.faq-item__question');
 
     buttons.forEach(function (btn) {
+      var targetId = btn.getAttribute('aria-controls');
+      var answer = document.getElementById(targetId);
+      if (answer) answer.__faqFullHTML = answer.innerHTML;
+
       btn.addEventListener('click', function () {
         var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        var targetId = btn.getAttribute('aria-controls');
-        var answer = document.getElementById(targetId);
 
-        // 현재 클릭된 것 토글
         if (isExpanded) {
           btn.setAttribute('aria-expanded', 'false');
           if (answer) {
             answer.setAttribute('hidden', '');
             answer.classList.remove('is-open');
+            resetTypewriter(answer);
           }
         } else {
           btn.setAttribute('aria-expanded', 'true');
           if (answer) {
             answer.removeAttribute('hidden');
             answer.classList.add('is-open');
+            if (reduceMotion) {
+              answer.innerHTML = answer.__faqFullHTML;
+            } else {
+              typewriterReveal(answer, answer.__faqFullHTML, 14);
+            }
           }
+        }
+      });
+    });
+  }
+
+  /* ---------- [v2] 창업비용 페이지 FAQ (<details>) — 열 때마다 타이핑 애니메이션 재생 ---------- */
+  function initDetailsFaqTypewriter() {
+    var items = document.querySelectorAll('.faq-list .faq-item');
+    if (!items.length) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    items.forEach(function (details) {
+      var answer = details.querySelector('.faq-item__a');
+      if (!answer) return;
+      answer.__faqFullHTML = answer.innerHTML;
+
+      details.addEventListener('toggle', function () {
+        if (details.open) {
+          if (reduceMotion) {
+            answer.innerHTML = answer.__faqFullHTML;
+          } else {
+            typewriterReveal(answer, answer.__faqFullHTML, 14);
+          }
+        } else {
+          resetTypewriter(answer);
         }
       });
     });
@@ -917,6 +987,7 @@
     initKakaoMap();
     initRevenueCalculator();
     initFaqAccordion();
+    initDetailsFaqTypewriter();
     initQuickLeadForm();
     initAiChatDemo();
   });

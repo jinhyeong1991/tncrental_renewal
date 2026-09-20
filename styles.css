@@ -2869,8 +2869,18 @@ textarea:focus-visible,
 }
 
 :root[data-theme="samsung"] .price-card--featured p,
-:root[data-theme="samsung"] .price-card--featured .price-card__unit {
+:root[data-theme="samsung"] .price-card--featured .price-card__unit,
+:root[data-theme="samsung"] .price-card--featured .price-card__server,
+:root[data-theme="samsung"] .price-card--featured li {
   color: rgba(16, 24, 40, 0.68);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__tier {
+  color: #1428a0;
+}
+
+:root[data-theme="samsung"] .price-card--featured hr {
+  border-top-color: var(--line);
 }
 
 /* 비용 비교 표 헤더: 화이트 + 블루 밑줄 강조 */
