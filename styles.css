@@ -443,6 +443,21 @@ textarea:focus-visible,
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.brand__mark-img--orange {
+  display: block;
+}
+
+.brand__mark-img--blue {
+  display: none;
+}
+
+:root[data-theme="samsung"] .brand__mark-img--orange {
+  display: none;
+}
+
+:root[data-theme="samsung"] .brand__mark-img--blue {
   display: block;
 }
 

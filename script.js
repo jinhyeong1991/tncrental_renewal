@@ -37,6 +37,11 @@
         var label = btn.querySelector('[data-theme-toggle-label]');
         if (label) label.textContent = theme === 'samsung' ? '기본 테마' : '블루 테마';
       });
+      var favicon = document.getElementById('favicon-icon');
+      var appleIcon = document.getElementById('favicon-apple');
+      var suffix = theme === 'samsung' ? 'blue' : 'orange';
+      if (favicon) favicon.href = 'images/favicon-32-' + suffix + '.png';
+      if (appleIcon) appleIcon.href = 'images/favicon-180-' + suffix + '.png';
       applyVantaTheme();
     }
 
