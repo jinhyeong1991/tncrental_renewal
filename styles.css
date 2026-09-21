@@ -435,6 +435,17 @@ textarea:focus-visible,
   color: var(--gold-300);
 }
 
+.brand__mark--logo {
+  background: none;
+}
+
+.brand__mark--logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .brand__sub {
   display: block;
   font-size: 0.68rem;
@@ -1820,6 +1831,10 @@ textarea:focus-visible,
   color: var(--navy-950);
 }
 
+.footer-brand .brand__mark--logo {
+  background: none;
+}
+
 .footer-col h4 {
   color: var(--white);
   font-size: 0.98rem;
@@ -3090,6 +3105,11 @@ textarea:focus-visible,
 
 :root[data-theme="samsung"] .brand__mark svg {
   color: #ffffff;
+}
+
+:root[data-theme="samsung"] .brand__mark--logo,
+:root[data-theme="samsung"] .footer-brand .brand__mark--logo {
+  background: none;
 }
 
 /* 대표 메시지 카드 "숫자가" 강조 문구: 오렌지 대신 블루 그라디언트 */
