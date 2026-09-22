@@ -412,9 +412,9 @@ textarea:focus-visible,
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-weight: 800;
-  font-size: 1.18rem;
+  font-size: 1.4rem;
   color: var(--navy-900);
   letter-spacing: -0.02em;
 }
@@ -463,7 +463,7 @@ textarea:focus-visible,
 
 .brand__sub {
   display: block;
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--ink-500);
   letter-spacing: 0.04em;
