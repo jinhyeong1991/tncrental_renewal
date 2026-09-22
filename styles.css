@@ -188,6 +188,64 @@ h1, h2, h3, h4, p, figure {
   background: var(--cream-100);
 }
 
+/* -------------------- TARGET AUDIENCE: video background -------------------- */
+.who-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.who-section__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.who-section__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.who-section__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--navy-950);
+  opacity: 0.46;
+}
+
+.who-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.who-section .section-head .eyebrow {
+  color: var(--gold-300);
+}
+
+.who-section .section-head h2 {
+  color: var(--white);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+
+.who-section .section-head .lead {
+  color: rgba(248, 245, 238, 0.86);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-section__video {
+    display: none;
+  }
+
+  .who-section__overlay {
+    opacity: 1;
+  }
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -1125,12 +1183,14 @@ textarea:focus-visible,
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-.video-embed iframe {
+.video-embed iframe,
+.video-embed video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+  object-fit: cover;
 }
 
 /* -------------------- Grids & Cards -------------------- */
