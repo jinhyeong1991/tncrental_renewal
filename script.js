@@ -267,7 +267,7 @@
     observer.observe(chart);
   }
 
-  /* ---------- Hero background: 기본 테마 VANTA.DOTS / 블루 테마 VANTA.NET (three.js 기반, CDN 로드) ---------- */
+  /* ---------- Hero background: VANTA.DOTS, 테마별 색상만 다르게 (three.js 기반, CDN 로드) ---------- */
   function initHeroVanta() {
     var el = document.getElementById('hero-vanta');
     if (!el) return;
@@ -287,48 +287,28 @@
     var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     if (isMobile) return; // 모바일에서는 배경 애니메이션 없이 정적 배경만 사용
 
-    if (isSamsung) {
-      // 블루 테마: 화이트 배경 전체에 별자리처럼 은은하게 연결되는 블루 파티클 네트워크로 고급스러운 느낌 연출
-      // (텍스트 블록 뒤는 .hero__copy::before 화이트 광원으로 가려 가독성 확보 — styles.css 참고)
-      if (!VANTA.NET) return;
-      heroVantaInstance = VANTA.NET({
-        el: el,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x1c4ed8,
-        backgroundColor: 0xffffff,
-        backgroundAlpha: 0,
-        points: 10.00,
-        maxDistance: 22.00,
-        spacing: 20.00,
-        showDots: true
-      });
-    } else {
-      if (!VANTA.DOTS) return;
-      heroVantaInstance = VANTA.DOTS({
-        el: el,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0xf27405,
-        color2: 0xf9a865,
-        backgroundColor: 0x121110,
-        backgroundAlpha: 0,
-        size: 2.60,
-        spacing: 26.00,
-        showLines: false,
-        speed: 1.7
-      });
-    }
+    if (!VANTA.DOTS) return;
+
+    // 블루 테마는 연한 블루 배경(#eaf1ff) 위에 진한 블루(#1428a0) 도트를, 기본 테마는 다크 배경 위 오렌지 톤 도트를 사용한다.
+    // 애니메이션 방식(크기·간격·속도)은 동일하게 유지해 두 테마 간 통일감을 준다.
+    heroVantaInstance = VANTA.DOTS({
+      el: el,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: isSamsung ? 0x1428a0 : 0xf27405,
+      color2: isSamsung ? 0x1428a0 : 0xf9a865,
+      backgroundColor: isSamsung ? 0xeaf1ff : 0x121110,
+      backgroundAlpha: 0,
+      size: 2.60,
+      spacing: 26.00,
+      showLines: false,
+      speed: 1.7
+    });
   }
 
   /* ---------- Navy 섹션 배경: VANTA.TOPOLOGY (p5.js 기반, CDN 로드) ---------- */

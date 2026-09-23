@@ -781,21 +781,6 @@ textarea:focus-visible,
   display: block;
 }
 
-/* 블루 테마: 파티클 네트워크는 히어로 전체(좌우)에 깔되, 텍스트 블록 뒤쪽만 화이트 광원으로 부드럽게 가려 가독성을 확보 */
-:root[data-theme="samsung"] .hero__copy {
-  position: relative;
-  isolation: isolate;
-}
-
-:root[data-theme="samsung"] .hero__copy::before {
-  content: '';
-  position: absolute;
-  inset: -36px -48px -36px -20px;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(62% 78% at 34% 42%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 42%, rgba(255, 255, 255, 0) 100%);
-}
-
 .hero__grid {
   position: relative;
   z-index: 1;
@@ -871,10 +856,6 @@ textarea:focus-visible,
   flex-shrink: 0;
 }
 
-:root[data-theme="samsung"] .hero__actions-hint {
-  color: rgba(16, 24, 40, 0.55);
-}
-
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
@@ -889,9 +870,15 @@ textarea:focus-visible,
   gap: 8px;
 }
 
-/* 블루(삼성) 테마에서는 메인 히어로를 화이트 배경 + 어두운 텍스트로 전환 */
+.hero__meta svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-400);
+}
+
+/* 블루 테마: 연한 블루 배경(#eaf1ff) 위에 진한 블루(#1428a0) 텍스트·아이콘으로 깔끔하게 정리 */
 :root[data-theme="samsung"] .hero {
-  background: #ffffff;
+  background: #eaf1ff;
   color: #101828;
 }
 
@@ -919,6 +906,14 @@ textarea:focus-visible,
   color: rgba(16, 24, 40, 0.72);
 }
 
+:root[data-theme="samsung"] .hero__actions-hint {
+  color: rgba(16, 24, 40, 0.55);
+}
+
+:root[data-theme="samsung"] .hero__actions-hint svg {
+  color: #1428a0;
+}
+
 :root[data-theme="samsung"] .hero__meta {
   color: rgba(16, 24, 40, 0.6);
 }
@@ -936,12 +931,6 @@ textarea:focus-visible,
   color: #1428a0;
   text-decoration-color: #1428a0;
   background: none;
-}
-
-.hero__meta svg {
-  width: 16px;
-  height: 16px;
-  color: var(--gold-400);
 }
 
 /* -------------------- Stat strip (숫자 중심 신뢰 카드) -------------------- */
