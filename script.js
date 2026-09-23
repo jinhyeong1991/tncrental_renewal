@@ -267,44 +267,68 @@
     observer.observe(chart);
   }
 
-  /* ---------- Hero background: VANTA.DOTS (three.js 기반, CDN 로드) ---------- */
+  /* ---------- Hero background: 기본 테마 VANTA.DOTS / 블루 테마 VANTA.NET (three.js 기반, CDN 로드) ---------- */
   function initHeroVanta() {
     var el = document.getElementById('hero-vanta');
     if (!el) return;
-
-    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return; // 정적 배경 그대로 둠
-
-    var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
-    if (isMobile) return; // 모바일에서는 도트 애니메이션 없이 정적 배경만 사용
-
-    if (typeof VANTA === 'undefined' || !VANTA.DOTS) return; // CDN 로드 실패 시 조용히 무시
 
     if (heroVantaInstance && heroVantaInstance.destroy) {
       heroVantaInstance.destroy();
       heroVantaInstance = null;
     }
 
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return; // 정적 배경 그대로 둠
+
+    if (typeof VANTA === 'undefined') return; // CDN 로드 실패 시 조용히 무시
+
     var isSamsung = document.documentElement.getAttribute('data-theme') === 'samsung';
 
-    heroVantaInstance = VANTA.DOTS({
-      el: el,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: isSamsung ? 0x1428a0 : 0xf27405,
-      color2: isSamsung ? 0x2189ff : 0xf9a865,
-      backgroundColor: isSamsung ? 0xffffff : 0x121110,
-      backgroundAlpha: 0,
-      size: 2.60,
-      spacing: 26.00,
-      showLines: false,
-      speed: 1.7
-    });
+    var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    if (isMobile) return; // 모바일에서는 배경 애니메이션 없이 정적 배경만 사용
+
+    if (isSamsung) {
+      // 블루 테마: 화이트 배경 전체에 별자리처럼 은은하게 연결되는 블루 파티클 네트워크로 고급스러운 느낌 연출
+      // (텍스트 블록 뒤는 .hero__copy::before 화이트 광원으로 가려 가독성 확보 — styles.css 참고)
+      if (!VANTA.NET) return;
+      heroVantaInstance = VANTA.NET({
+        el: el,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x1c4ed8,
+        backgroundColor: 0xffffff,
+        backgroundAlpha: 0,
+        points: 10.00,
+        maxDistance: 22.00,
+        spacing: 20.00,
+        showDots: true
+      });
+    } else {
+      if (!VANTA.DOTS) return;
+      heroVantaInstance = VANTA.DOTS({
+        el: el,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xf27405,
+        color2: 0xf9a865,
+        backgroundColor: 0x121110,
+        backgroundAlpha: 0,
+        size: 2.60,
+        spacing: 26.00,
+        showLines: false,
+        speed: 1.7
+      });
+    }
   }
 
   /* ---------- Navy 섹션 배경: VANTA.TOPOLOGY (p5.js 기반, CDN 로드) ---------- */
