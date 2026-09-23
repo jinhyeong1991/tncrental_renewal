@@ -876,16 +876,23 @@ textarea:focus-visible,
   color: var(--gold-400);
 }
 
-/* 블루 테마: 연한 블루 배경(#eaf1ff) 위에 진한 블루(#1428a0) 텍스트·아이콘으로 깔끔하게 정리 */
+/* 블루 테마: 거의 흰색인 단색 배경(#F8FAFF)으로 정돈하고, 격자 패턴은 완전히 제거 */
 :root[data-theme="samsung"] .hero {
-  background: #eaf1ff;
+  background: #F8FAFF;
   color: #101828;
 }
 
 :root[data-theme="samsung"] .hero::before {
-  background-image:
-    linear-gradient(rgba(20, 40, 160, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 40, 160, 0.06) 1px, transparent 1px);
+  display: none;
+}
+
+/* 화이트&블루 톤 새떼(VANTA.BIRDS)는 화면 전체가 아니라 모니터 목업 뒤쪽에만 아주 옅게 배치 */
+:root[data-theme="samsung"] .hero__vanta {
+  left: 42%;
+  width: 50%;
+  opacity: 0.4;
+  mask-image: radial-gradient(62% 72% at 50% 48%, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(62% 72% at 50% 48%, black 35%, transparent 85%);
 }
 
 :root[data-theme="samsung"] .hero__badge {

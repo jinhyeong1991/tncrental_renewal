@@ -267,7 +267,7 @@
     observer.observe(chart);
   }
 
-  /* ---------- Hero background: VANTA.DOTS, 테마별 색상만 다르게 (three.js 기반, CDN 로드) ---------- */
+  /* ---------- Hero background: 기본 테마 VANTA.DOTS / 블루 테마 VANTA.BIRDS (three.js 기반, CDN 로드) ---------- */
   function initHeroVanta() {
     var el = document.getElementById('hero-vanta');
     if (!el) return;
@@ -287,28 +287,54 @@
     var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     if (isMobile) return; // 모바일에서는 배경 애니메이션 없이 정적 배경만 사용
 
-    if (!VANTA.DOTS) return;
-
-    // 블루 테마는 연한 블루 배경(#eaf1ff) 위에 진한 블루(#1428a0) 도트를, 기본 테마는 다크 배경 위 오렌지 톤 도트를 사용한다.
-    // 애니메이션 방식(크기·간격·속도)은 동일하게 유지해 두 테마 간 통일감을 준다.
-    heroVantaInstance = VANTA.DOTS({
-      el: el,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: isSamsung ? 0x1428a0 : 0xf27405,
-      color2: isSamsung ? 0x1428a0 : 0xf9a865,
-      backgroundColor: isSamsung ? 0xeaf1ff : 0x121110,
-      backgroundAlpha: 0,
-      size: 2.60,
-      spacing: 26.00,
-      showLines: false,
-      speed: 1.7
-    });
+    if (isSamsung) {
+      // 블루 테마: 거의 흰 배경(#F8FAFF) 위에 화이트&블루 톤 새떼(VANTA.BIRDS)가 모니터 목업 뒤쪽에만
+      // 옅게 날아다니도록 배치(styles.css의 .hero__vanta 마스크 처리 참고). 개체수를 적게 잡아 차분하게 유지.
+      if (!VANTA.BIRDS) return;
+      heroVantaInstance = VANTA.BIRDS({
+        el: el,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        backgroundColor: 0xf8faff,
+        backgroundAlpha: 0,
+        color1: 0x1428a0,
+        color2: 0xffffff,
+        colorMode: "lerpGradient",
+        birdSize: 1.10,
+        wingSpan: 24.00,
+        speedLimit: 3.00,
+        separation: 40.00,
+        alignment: 30.00,
+        cohesion: 30.00,
+        quantity: 2.20
+      });
+    } else {
+      // 기본 테마: 다크 배경 전체에 오렌지 톤 도트(VANTA.DOTS)
+      if (!VANTA.DOTS) return;
+      heroVantaInstance = VANTA.DOTS({
+        el: el,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xf27405,
+        color2: 0xf9a865,
+        backgroundColor: 0x121110,
+        backgroundAlpha: 0,
+        size: 2.60,
+        spacing: 26.00,
+        showLines: false,
+        speed: 1.7
+      });
+    }
   }
 
   /* ---------- Navy 섹션 배경: VANTA.TOPOLOGY (p5.js 기반, CDN 로드) ---------- */
