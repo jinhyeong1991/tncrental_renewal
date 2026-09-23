@@ -288,8 +288,8 @@
     if (isMobile) return; // 모바일에서는 배경 애니메이션 없이 정적 배경만 사용
 
     if (isSamsung) {
-      // 블루 테마: 거의 흰 배경(#F8FAFF) 위에 화이트&블루 톤 새떼(VANTA.BIRDS)가 모니터 목업 뒤쪽에만
-      // 옅게 날아다니도록 배치(styles.css의 .hero__vanta 마스크 처리 참고). 개체수를 적게 잡아 차분하게 유지.
+      // 블루 테마: 거의 흰 배경(#F8FAFF) 위에 화이트&블루 톤 새떼(VANTA.BIRDS)가 모니터 목업 뒤쪽에서
+      // 좀 더 존재감 있게 날아다니도록 배치(styles.css의 .hero__vanta 마스크 처리 참고).
       if (!VANTA.BIRDS) return;
       heroVantaInstance = VANTA.BIRDS({
         el: el,
@@ -305,13 +305,13 @@
         color1: 0x1428a0,
         color2: 0xffffff,
         colorMode: "lerpGradient",
-        birdSize: 1.10,
-        wingSpan: 24.00,
-        speedLimit: 3.00,
-        separation: 40.00,
+        birdSize: 1.45,
+        wingSpan: 27.00,
+        speedLimit: 4.50,
+        separation: 35.00,
         alignment: 30.00,
         cohesion: 30.00,
-        quantity: 2.20
+        quantity: 3.80
       });
     } else {
       // 기본 테마: 다크 배경 전체에 오렌지 톤 도트(VANTA.DOTS)

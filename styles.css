@@ -886,13 +886,13 @@ textarea:focus-visible,
   display: none;
 }
 
-/* 화이트&블루 톤 새떼(VANTA.BIRDS)는 화면 전체가 아니라 모니터 목업 뒤쪽에만 아주 옅게 배치 */
+/* 화이트&블루 톤 새떼(VANTA.BIRDS)는 화면 전체가 아니라 모니터 목업 뒤쪽에 좀 더 또렷하게 배치 */
 :root[data-theme="samsung"] .hero__vanta {
   left: 42%;
   width: 50%;
-  opacity: 0.4;
-  mask-image: radial-gradient(62% 72% at 50% 48%, black 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(62% 72% at 50% 48%, black 35%, transparent 85%);
+  opacity: 0.7;
+  mask-image: radial-gradient(62% 72% at 50% 48%, black 48%, transparent 90%);
+  -webkit-mask-image: radial-gradient(62% 72% at 50% 48%, black 48%, transparent 90%);
 }
 
 :root[data-theme="samsung"] .hero__badge {
