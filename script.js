@@ -582,9 +582,9 @@
     var bdApplianceCount = document.getElementById('bdApplianceCount');
     var bdApplianceSum = document.getElementById('bdApplianceSum');
 
-    var PRICE_WATER = 300000;      // 건당 30만 원
-    var PRICE_CHAIR = 500000;      // 건당 50만 원
-    var PRICE_APPLIANCE = 400000;  // 건당 40만 원
+    var PRICE_WATER = 400000;      // 정수기 건당 40만 원
+    var PRICE_CHAIR = 300000;      // 공기청정기·비데 건당 30만 원
+    var PRICE_APPLIANCE = 400000;  // 에어컨·TV 등 가전 건당 40만 원
 
     function calculate() {
       var wCount = parseInt(rangeWater.value, 10) || 0;

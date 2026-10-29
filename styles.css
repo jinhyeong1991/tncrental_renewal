@@ -825,6 +825,12 @@ textarea:focus-visible,
   color: var(--gold-400);
 }
 
+.hero h1 .hero__title-kicker {
+  display: block;
+  font-size: 0.72em;
+  margin-bottom: 10px;
+}
+
 .hero__lead {
   font-size: clamp(1.02rem, 1.5vw, 1.2rem);
   color: rgba(248, 245, 238, 0.82);
@@ -1841,6 +1847,12 @@ textarea:focus-visible,
 .cta-banner h2 {
   color: var(--white);
   margin-bottom: 14px;
+}
+
+.card h3,
+.cta-banner h2,
+.cta-banner p {
+  word-break: keep-all;
 }
 
 .cta-banner p {
@@ -3418,6 +3430,13 @@ textarea:focus-visible,
   flex-shrink: 0;
 }
 
+.ai-demo-tag {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-500);
+}
+
 .ai-status-indicator {
   display: inline-flex;
   align-items: center;
@@ -3848,6 +3867,12 @@ textarea:focus-visible,
   font-weight: 800;
   padding: 5px 14px;
   border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.calc-control-group__header {
+  gap: 12px;
 }
 
 .calc-slider {
@@ -3883,10 +3908,46 @@ textarea:focus-visible,
   margin-top: 8px;
 }
 
+.lead.lead--accent {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: var(--r-pill);
+  background: var(--gold-500);
+  color: var(--white);
+  font-weight: 700;
+  word-break: keep-all;
+}
+
 .calc-notice {
-  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 860px;
+  margin: 8px auto 0;
+  padding: 16px 22px;
+  background: var(--gold-050);
+  border: 2px solid var(--gold-500);
+  border-radius: 14px;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--gold-500);
+  word-break: keep-all;
+}
+
+.calc-notice svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.calc-net-note {
+  margin: -12px 0 20px;
+  font-size: 12px;
   line-height: 1.6;
   color: var(--ink-500);
+  word-break: keep-all;
 }
 
 .calc-result-board {
