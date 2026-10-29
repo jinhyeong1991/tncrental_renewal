@@ -39,6 +39,9 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color 0.25s ease, color 0.25s ease;
+  /* 한글이 단어 중간에서 끊기지 않게 하고, 너무 긴 단어만 강제로 줄바꿈 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 img {
@@ -300,6 +303,13 @@ h1, h2, h3, h4 {
   line-height: 1.24;
   letter-spacing: -0.02em;
   color: var(--ink-900);
+  /* 줄이 넘칠 때 마지막 줄에 한 단어만 떨어지지 않게 줄 길이를 고르게 */
+  text-wrap: balance;
+}
+
+.lead,
+.hero__lead {
+  text-wrap: pretty;
 }
 
 .section--navy h1,
@@ -467,6 +477,13 @@ textarea:focus-visible,
   padding-block: 14px;
 }
 
+/* 아주 좁은 폰(320px)에서도 로고와 메뉴 버튼이 한 줄에 들어가게 */
+@media (max-width: 360px) {
+  .site-header__inner {
+    gap: 8px;
+  }
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -534,6 +551,7 @@ textarea:focus-visible,
 }
 
 .nav-link {
+  white-space: nowrap;
   padding: 10px 16px;
   border-radius: var(--r-pill);
   font-weight: 600;
@@ -814,10 +832,17 @@ textarea:focus-visible,
   margin-bottom: 22px;
 }
 
+/* 제목 크기를 화면 폭이 아닌 왼쪽 글 칸 폭에 맞춰, 가장 긴 줄도 한 줄에 들어가게 한다 */
+.hero__copy {
+  container-type: inline-size;
+  min-width: 0;
+}
+
 .hero h1 {
   color: var(--white);
   margin-bottom: 20px;
   font-size: clamp(1.9rem, 2.7vw, 2.6rem);
+  font-size: clamp(1.3rem, 7.2cqi, 2.6rem);
 }
 
 .hero h1 em {
@@ -1849,12 +1874,6 @@ textarea:focus-visible,
   margin-bottom: 14px;
 }
 
-.card h3,
-.cta-banner h2,
-.cta-banner p {
-  word-break: keep-all;
-}
-
 .cta-banner p {
   color: rgba(248, 245, 238, 0.78);
   max-width: 56ch;
@@ -2743,7 +2762,8 @@ textarea:focus-visible,
   }
 }
 
-@media (max-width: 940px) {
+/* 메뉴 글자가 두 줄로 깨지기 전에 햄버거 메뉴로 전환 */
+@media (max-width: 1120px) {
   .main-nav {
     display: none;
   }
@@ -2754,10 +2774,6 @@ textarea:focus-visible,
 
   .site-header__inner {
     flex-wrap: wrap;
-  }
-
-  .header-phone {
-    display: none;
   }
 
   .main-nav.is-open {
@@ -2801,6 +2817,12 @@ textarea:focus-visible,
 
   .main-nav.is-open .nav-dropdown.is-open .nav-dropdown__menu {
     display: flex;
+  }
+}
+
+@media (max-width: 940px) {
+  .header-phone {
+    display: none;
   }
 
   .stat-strip {
@@ -2892,6 +2914,7 @@ textarea:focus-visible,
 
   .hero h1 {
     font-size: clamp(1.5rem, 6.8vw, 2rem);
+    font-size: clamp(1.3rem, 7.2cqi, 2rem);
   }
 
   .cta-banner .btn-row {
@@ -3915,7 +3938,6 @@ textarea:focus-visible,
   background: var(--gold-500);
   color: var(--white);
   font-weight: 700;
-  word-break: keep-all;
 }
 
 .calc-notice {
@@ -3932,7 +3954,6 @@ textarea:focus-visible,
   font-weight: 700;
   line-height: 1.6;
   color: var(--gold-500);
-  word-break: keep-all;
 }
 
 .calc-notice svg {
@@ -3947,7 +3968,6 @@ textarea:focus-visible,
   font-size: 12px;
   line-height: 1.6;
   color: var(--ink-500);
-  word-break: keep-all;
 }
 
 .calc-result-board {
