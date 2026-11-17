@@ -102,8 +102,25 @@
     });
   }
 
+  /* ---------- 이달의 프로모션 링크: 한국 시간 기준 이번 달로 검색어 자동 변경 ("11월 프로모션" → 다음 달엔 "12월 프로모션") ---------- */
+  function initMonthlyPromoLink() {
+    var month;
+    try {
+      month = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', month: 'numeric' }).format(new Date()));
+    } catch (e) {
+      month = new Date().getMonth() + 1;
+    }
+    if (!month) return;
+    var url = 'https://all.tncrental.co.kr/shop/goods.php?keyword=' + encodeURIComponent(month + '월 프로모션');
+    document.querySelectorAll('.nav-dropdown__item--promo, [data-monthly-promo]').forEach(function (a) {
+      a.href = url;
+      a.title = month + '월 프로모션 상품 보기';
+    });
+  }
+
   /* ---------- 상단 내비게이션 드롭다운 (쇼핑몰 바로가기: 종합몰 + 제휴사 단독몰) ---------- */
   function initNavDropdowns() {
+    initMonthlyPromoLink();
     var dropdowns = document.querySelectorAll('[data-nav-dropdown]');
     if (!dropdowns.length) return;
 
