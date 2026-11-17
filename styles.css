@@ -1641,6 +1641,11 @@ textarea:focus-visible,
   margin-bottom: 8px;
 }
 
+/* 검정 카드(스탠다드) 제목: 전체 h3 글자색(어두운색)이 그대로 적용돼 안 보이던 문제 → 흰색 */
+.price-card--featured .price-card__name {
+  color: var(--white);
+}
+
 .price-card__desc {
   font-size: 0.9rem;
   margin-bottom: 20px;
