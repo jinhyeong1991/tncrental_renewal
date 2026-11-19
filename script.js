@@ -257,24 +257,94 @@
     });
   }
 
-  /* ---------- Market growth chart (스크롤 진입 시 성장 애니메이션 재생) ---------- */
+  /* ---------- Market growth chart (화면에 보이는 동안 성장 애니메이션 + 숫자 카운트업 반복) ---------- */
   function initMarketChart() {
     var chart = document.querySelector('.market-chart');
     if (!chart) return;
 
-    if (!('IntersectionObserver' in window)) {
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
       chart.classList.add('is-visible');
       return;
+    }
+
+    var HOLD_MS = 4200;   // 다 그려진 뒤 멈춰 보여주는 시간
+    var OUT_MS = 450;     // 다음 반복 전 살짝 사라지는 시간 (styles.css .mc-out 과 맞춤)
+    var STEP_MS = 320;    // 연도별 등장 간격 (styles.css .mc-d0~d5 와 맞춤)
+    var COUNT_MS = 900;   // 숫자 올라가는 시간
+    var DRAW_MS = 1600 + 2100; // 마지막 항목 시작 + 선 그리기 시간
+
+    // 숫자 라벨: "19.5조" → 0에서 19.5까지 올라가게
+    var labels = Array.prototype.slice.call(
+      chart.querySelectorAll('.market-chart__bar-label, .market-chart__line-label text')
+    ).map(function (el) {
+      var text = el.textContent;
+      var m = text.match(/^([\d.]+)(.*)$/);
+      var d = (el.getAttribute('class') || '').match(/mc-d(\d)/);
+      return {
+        el: el,
+        text: text,
+        value: m ? parseFloat(m[1]) : null,
+        decimals: m && m[1].indexOf('.') !== -1 ? 1 : 0,
+        unit: m ? m[2] : '',
+        delay: d ? parseInt(d[1], 10) * STEP_MS : 0
+      };
+    });
+
+    var timers = [];
+    var rafId = null;
+    var running = false;
+
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+    function stop() {
+      running = false;
+      timers.forEach(clearTimeout);
+      timers = [];
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      labels.forEach(function (l) { l.el.textContent = l.text; });
+    }
+
+    function countUp() {
+      var start = performance.now();
+      function frame(now) {
+        var t = now - start;
+        var busy = false;
+        labels.forEach(function (l) {
+          if (l.value === null) return;
+          var p = Math.min(Math.max((t - l.delay) / COUNT_MS, 0), 1);
+          if (p < 1) busy = true;
+          var eased = 1 - Math.pow(1 - p, 3);
+          l.el.textContent = (l.value * eased).toFixed(l.decimals) + l.unit;
+        });
+        rafId = busy ? requestAnimationFrame(frame) : null;
+      }
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function play() {
+      if (!running) return;
+      chart.classList.remove('is-visible', 'mc-out');
+      void chart.offsetWidth; // 애니메이션 처음부터 다시
+      chart.classList.add('is-visible');
+      countUp();
+      later(function () {
+        chart.classList.add('mc-out');
+        later(play, OUT_MS);
+      }, DRAW_MS + HOLD_MS);
     }
 
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            void chart.offsetWidth;
-            chart.classList.add('is-visible');
+            if (running) return;
+            running = true;
+            play();
           } else {
-            chart.classList.remove('is-visible');
+            stop();
+            chart.classList.remove('is-visible', 'mc-out');
           }
         });
       },

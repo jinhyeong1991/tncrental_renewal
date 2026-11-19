@@ -1162,6 +1162,15 @@ textarea:focus-visible,
   animation: mc-draw 2.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* 반복 재생 직전 살짝 사라졌다가 다시 자라남 (script.js OUT_MS 와 맞춤) */
+.market-chart__svg {
+  transition: opacity 0.45s ease;
+}
+
+.market-chart.mc-out .market-chart__svg {
+  opacity: 0;
+}
+
 .mc-d0 { animation-delay: 0s; }
 .mc-d1 { animation-delay: 0.32s; }
 .mc-d2 { animation-delay: 0.64s; }
