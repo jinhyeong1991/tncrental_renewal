@@ -1585,6 +1585,15 @@ textarea:focus-visible,
   align-items: stretch;
 }
 
+/* 플랜 2개: 가운데 정렬 + 카드가 너무 넓어지지 않게 */
+.pricing-grid--2,
+.price-teaser-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .price-card {
   background: var(--white);
   border: 1px solid var(--line);
@@ -1735,6 +1744,24 @@ textarea:focus-visible,
   width: 100%;
   border-collapse: collapse;
   min-width: 640px;
+}
+
+/* 플랜 2개(3열 표)는 휴대폰에서도 옆으로 밀지 않고 한 화면에 */
+@media (max-width: 640px) {
+  .cost-table {
+    min-width: 0;
+  }
+
+  .cost-table th,
+  .cost-table td {
+    padding: 12px 10px;
+    font-size: 0.82rem;
+    word-break: keep-all;
+  }
+
+  .cost-table caption {
+    padding: 16px 12px 0;
+  }
 }
 
 .cost-table caption {
