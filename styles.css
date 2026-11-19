@@ -2983,6 +2983,12 @@ textarea:focus-visible,
   color: #1428a0;
 }
 
+:root[data-theme="samsung"] .mall-card--general .brand-chip {
+  background: #f4f8ff;
+  color: #1428a0;
+  border-color: #bcd4ff;
+}
+
 /* 파트너 후기 카드: 화이트 + 얇은 테두리 */
 :root[data-theme="samsung"] .testimonial {
   background: #ffffff;
