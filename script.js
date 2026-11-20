@@ -1022,7 +1022,7 @@
     timer = setTimeout(runTurn, 1800);
   }
 
-  /* ---------- [v2] 1분 간편 상담 폼 피드백 및 전화번호 포맷팅 ---------- */
+  /* ---------- [v2] 간편 상담 폼 피드백 및 전화번호 포맷팅 ---------- */
   function initQuickLeadForm() {
     var form = document.getElementById('quickLeadForm');
     if (!form) return;
