@@ -4788,5 +4788,21 @@ textarea:focus-visible,
   }
 }
 
+/* 프리미엄 카드: 원래 가격(취소선) → 할인 가격 */
+.price-card__was {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink-500);
+  text-decoration: line-through;
+  text-decoration-color: #e03131;
+  text-decoration-thickness: 2px;
+  margin-bottom: 2px;
+}
 
-
+.price-card__server del {
+  color: var(--ink-500);
+  text-decoration-color: #e03131;
+  text-decoration-thickness: 2px;
+  margin-right: 2px;
+}
