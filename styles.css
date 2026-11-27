@@ -4788,21 +4788,62 @@ textarea:focus-visible,
   }
 }
 
-/* 프리미엄 카드: 원래 가격(취소선) → 할인 가격 */
+/* 프리미엄 카드: 쇼핑몰식 할인 가격 표기 (정가는 옅은 회색 가는 취소선) */
 .price-card__was {
   display: block;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink-500);
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #a3a8b3;
   text-decoration: line-through;
-  text-decoration-color: #e03131;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   margin-bottom: 2px;
 }
 
-.price-card__server del {
-  color: var(--ink-500);
-  text-decoration-color: #e03131;
-  text-decoration-thickness: 2px;
-  margin-right: 2px;
+.price-card__rate {
+  font-size: clamp(1.5rem, 2.3vw, 1.85rem);
+  font-weight: 800;
+  color: #8f2d2d;
+  margin-right: 4px;
+}
+
+.price-card__price strong small,
+.price-card__fee small {
+  font-size: 0.62em;
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+.price-card__fee-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 8px;
+  margin-bottom: 6px;
+}
+
+.price-card__fee-row .price-card__fee-label {
+  font-size: 0.9rem;
+  color: var(--ink-700);
+}
+
+.price-card__fee {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.price-card__fee-row del {
+  font-size: 0.9rem;
+  color: #a3a8b3;
+  text-decoration-thickness: 1px;
+}
+
+.price-card__off {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #b42323;
+  background: #fde4e4;
+  border-radius: 999px;
+  padding: 3px 10px;
 }
