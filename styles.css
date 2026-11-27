@@ -4903,11 +4903,7 @@ textarea:focus-visible,
 }
 
 /* 프리미엄 강조 애니메이션: 25% 가 몇 초마다 살짝 커졌다 돌아오고, 할인 뱃지에 빛이 지나감 */
-.price-card__rate {
-  display: inline-block;
-  transform-origin: left 70%;
-  animation: priceRatePulse 2.8s ease-in-out infinite;
-}
+
 
 .price-card__off {
   position: relative;
@@ -4925,11 +4921,7 @@ textarea:focus-visible,
   animation: priceOffShine 3.2s ease-in-out infinite;
 }
 
-@keyframes priceRatePulse {
-  0%, 70%, 100% { transform: scale(1); }
-  80% { transform: scale(1.12); }
-  90% { transform: scale(1); }
-}
+
 
 @keyframes priceOffShine {
   0%, 60% { left: -60%; }
@@ -4937,7 +4929,6 @@ textarea:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .price-card__rate,
   .price-card__off::after {
     animation: none;
   }
@@ -4956,4 +4947,36 @@ textarea:focus-visible,
 .price-card__off {
   line-height: 1.35;
   padding: 2px 9px;
+}
+
+/* 큰 가격 줄도 연관리비 줄과 같은 방식: 가격 → 정가(취소선) → 할인 뱃지 */
+.price-card__price {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.price-card__price del {
+  font-size: 0.9rem;
+  color: #a3a8b3;
+  text-decoration-thickness: 1px;
+}
+
+/* 좁은 PC(3단 유지 구간)에서 연관리비 줄이 두 줄로 넘어가지 않게 살짝 압축 */
+@media (min-width: 941px) and (max-width: 1160px) {
+  .price-card__fee-row,
+  .price-card__price {
+    gap: 4px 5px;
+  }
+
+  .price-card__fee-row .price-card__fee-label,
+  .price-card__fee-row del,
+  .price-card__price del {
+    font-size: 0.8rem;
+  }
+
+  .price-card__off {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
 }
