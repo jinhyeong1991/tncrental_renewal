@@ -5087,3 +5087,37 @@ textarea:focus-visible,
   min-height: 26px;
   margin-bottom: 2px;
 }
+
+/* 가격 영역 회색은 2단계만: 진한 회색(설명) / 옅은 회색(정가·납부 안내 등 보조) */
+.price-card__label,
+.price-card__fee-row .price-card__fee-label {
+  color: var(--ink-700);
+}
+
+.price-card__price del,
+.price-card__fee-row del,
+.price-card__server {
+  color: var(--ink-500);
+}
+
+.price-card--featured .price-card__label,
+.price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(248, 245, 238, 0.86);
+}
+
+.price-card--featured .price-card__price del,
+.price-card--featured .price-card__fee-row del,
+.price-card--featured .price-card__server {
+  color: rgba(248, 245, 238, 0.58);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__label,
+:root[data-theme="samsung"] .price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(16, 24, 40, 0.78);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__price del,
+:root[data-theme="samsung"] .price-card--featured .price-card__fee-row del,
+:root[data-theme="samsung"] .price-card--featured .price-card__server {
+  color: rgba(16, 24, 40, 0.55);
+}
