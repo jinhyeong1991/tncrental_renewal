@@ -5076,3 +5076,14 @@ textarea:focus-visible,
 .price-card hr {
   margin-bottom: 16px;
 }
+
+/* 가격 영역 4줄을 촘촘하게: 큰 가격 줄의 빈 높이 제거, 연관리비 줄 높이·아래 여백 축소 */
+.price-card__price {
+  min-height: 0;
+  margin-bottom: 2px;
+}
+
+.price-card__fee-row {
+  min-height: 26px;
+  margin-bottom: 2px;
+}
