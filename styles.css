@@ -4866,3 +4866,13 @@ textarea:focus-visible,
     margin-bottom: 75px;
   }
 }
+
+/* 블루 테마: 프리미엄 할인율·할인 뱃지를 블루 계열로 */
+:root[data-theme="samsung"] .price-card__rate {
+  color: #2160e6;
+}
+
+:root[data-theme="samsung"] .price-card__off {
+  color: #1a44c2;
+  background: #e5edff;
+}
