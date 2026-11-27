@@ -4789,14 +4789,26 @@ textarea:focus-visible,
 }
 
 /* 프리미엄 카드: 쇼핑몰식 할인 가격 표기 (정가는 옅은 회색 가는 취소선) */
+.price-card__was-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
 .price-card__was {
-  display: block;
   font-size: 0.98rem;
   font-weight: 500;
   color: #a3a8b3;
   text-decoration: line-through;
   text-decoration-thickness: 1px;
-  margin-bottom: 2px;
+}
+
+/* 목록 줄 간격: 카드 높이가 늘어나도 줄 사이가 벌어지지 않게 (세 카드 모두 12px 로 동일) */
+.price-card ul {
+  align-content: start;
 }
 
 .price-card__rate {
@@ -4846,4 +4858,11 @@ textarea:focus-visible,
   background: #fde4e4;
   border-radius: 999px;
   padding: 3px 10px;
+}
+
+/* PC 3단: 프리미엄은 가격 줄이 2줄 더 있어서, 나머지 카드도 같은 높이만큼 띄워 목록 시작 위치를 맞춤 */
+@media (min-width: 941px) {
+  .pricing-grid .price-card:not(:has(.price-card__was-row)) .price-card__server {
+    margin-bottom: 75px;
+  }
 }
