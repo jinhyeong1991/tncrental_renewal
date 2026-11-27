@@ -4789,14 +4789,7 @@ textarea:focus-visible,
 }
 
 /* 프리미엄 카드: 쇼핑몰식 할인 가격 표기 (정가는 옅은 회색 가는 취소선) */
-.price-card__was-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 8px;
-  margin-bottom: 0;
-  line-height: 1.4;
-}
+
 
 .price-card__was {
   font-size: 0.98rem;
@@ -4860,12 +4853,7 @@ textarea:focus-visible,
   padding: 3px 10px;
 }
 
-/* PC 3단: 프리미엄은 가격 줄이 2줄 더 있어서, 나머지 카드도 같은 높이만큼 띄워 목록 시작 위치를 맞춤 */
-@media (min-width: 941px) {
-  .pricing-grid .price-card:not(:has(.price-card__was-row)) .price-card__server {
-    margin-bottom: 75px;
-  }
-}
+
 
 /* 블루 테마: 프리미엄 할인율·할인 뱃지를 블루 계열로 */
 :root[data-theme="samsung"] .price-card__rate {
@@ -4875,4 +4863,97 @@ textarea:focus-visible,
 :root[data-theme="samsung"] .price-card__off {
   color: #1a44c2;
   background: #e5edff;
+}
+
+/* 요금 카드 가격 영역: 세 카드 모두 같은 4줄 구조
+   (셋팅비 안내 / 큰 가격 / 연관리비 / 납부 안내) — 프리미엄은 같은 줄 안에서만 강조 */
+.price-card__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  font-size: 0.84rem;
+  color: var(--ink-500);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.price-card__price {
+  min-height: 3rem;
+}
+
+.price-card__server {
+  font-size: 0.8rem;
+}
+
+.price-card--featured .price-card__fee {
+  color: var(--white);
+}
+
+.price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(248, 245, 238, 0.78);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__fee {
+  color: #101828;
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(16, 24, 40, 0.68);
+}
+
+/* 프리미엄 강조 애니메이션: 25% 가 몇 초마다 살짝 커졌다 돌아오고, 할인 뱃지에 빛이 지나감 */
+.price-card__rate {
+  display: inline-block;
+  transform-origin: left 70%;
+  animation: priceRatePulse 2.8s ease-in-out infinite;
+}
+
+.price-card__off {
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card__off::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: priceOffShine 3.2s ease-in-out infinite;
+}
+
+@keyframes priceRatePulse {
+  0%, 70%, 100% { transform: scale(1); }
+  80% { transform: scale(1.12); }
+  90% { transform: scale(1); }
+}
+
+@keyframes priceOffShine {
+  0%, 60% { left: -60%; }
+  100% { left: 130%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .price-card__rate,
+  .price-card__off::after {
+    animation: none;
+  }
+}
+
+/* 프리미엄 줄 높이를 다른 카드와 같게 (정가·뱃지 때문에 몇 px 밀리던 것) */
+.price-card__label .price-card__was {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.price-card__fee-row {
+  min-height: 26px;
+}
+
+.price-card__off {
+  line-height: 1.35;
+  padding: 2px 9px;
 }
