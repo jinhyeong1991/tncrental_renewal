@@ -4980,3 +4980,85 @@ textarea:focus-visible,
     padding: 2px 7px;
   }
 }
+
+/* 가격 영역 가독성 보완: 작은 회색 글씨를 키우고 진하게 */
+.price-card__label {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  margin-bottom: 4px;
+}
+
+.price-card__price strong small,
+.price-card__fee small {
+  font-size: 0.7em;
+}
+
+.price-card__fee-row {
+  gap: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.price-card__fee-row .price-card__fee-label {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink-700);
+}
+
+.price-card__fee {
+  font-size: 1.35rem;
+}
+
+.price-card__price del,
+.price-card__fee-row del {
+  font-size: 0.95rem;
+  color: #8a909b;
+}
+
+.price-card__off {
+  font-size: 0.82rem;
+  padding: 3px 10px;
+}
+
+.price-card__server {
+  font-size: 0.88rem;
+  color: var(--ink-500);
+}
+
+.price-card--featured .price-card__label,
+.price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(248, 245, 238, 0.86);
+}
+
+:root[data-theme="samsung"] .price-card--featured .price-card__label,
+:root[data-theme="samsung"] .price-card--featured .price-card__fee-row .price-card__fee-label {
+  color: rgba(16, 24, 40, 0.78);
+}
+
+/* 좁은 PC(3단 유지 구간)에서는 한 줄에 들어가도록 살짝 줄임 */
+@media (min-width: 941px) and (max-width: 1160px) {
+  .price-card__fee-row,
+  .price-card__price {
+    gap: 4px 5px;
+  }
+
+  .price-card__fee-row .price-card__fee-label,
+  .price-card__fee-row del,
+  .price-card__price del {
+    font-size: 0.84rem;
+  }
+
+  .price-card__fee {
+    font-size: 1.2rem;
+  }
+
+  .price-card__off {
+    font-size: 0.72rem;
+    padding: 2px 7px;
+  }
+}
+
+.price-card__fee-row {
+  min-height: 30px;
+  align-items: center;
+}
