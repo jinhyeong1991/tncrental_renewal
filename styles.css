@@ -5062,3 +5062,17 @@ textarea:focus-visible,
   min-height: 30px;
   align-items: center;
 }
+
+/* 간격 좁히기: 설명 → 셋팅비 안내, 납부 안내 → 체크 목록 */
+.price-card__desc {
+  min-height: 0;
+  margin-bottom: 16px;
+}
+
+.price-card__server {
+  margin-bottom: 14px;
+}
+
+.price-card hr {
+  margin-bottom: 16px;
+}
